@@ -5,9 +5,11 @@ created by Josh Burgoyne
 
 Bit Hero is an arcade style game that is rendered on a 20 X 20 grid. The user controls a Hero on the screen and guides him towards a reward placed randomly on the grid. He must avoid being hit by dangerous hazards that are also moving on the grid. The player has three lives and the longer he plays, the harder the game gets. The player starts out with one Hero, but can level up and steal Heroes from other players. 
 
-![Bit Hero](game.png) | width=200
-![heroes](heroes.png) | width=200
-![challenge](challenge.png) | width=200
+<img src="game.png" width=50% height=50%>
+<img src="heroes.png" width=50% height=50%>
+<img src="challenge.png" width=50% height=50%>
+
+
 
 ## Key Features:
 
