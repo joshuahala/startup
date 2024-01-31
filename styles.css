@@ -1,0 +1,28 @@
+body {
+    margin:0;
+    padding:0;
+}
+nav {
+    background-color: grey;
+    margin: 0;
+}
+
+ul {
+    margin:0;
+    padding:20px;
+}
+
+li {
+   display: inline;
+   text-decoration: none;
+   margin: 10px;
+}
+
+#canvas {
+    margin-top: 30px;
+    height: 50vh;
+    width: 50vh;
+    background-color: black;
+    
+
+}

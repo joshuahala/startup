@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>My Heroes</li>
+            <li>Play</li>
+            <li>Challenge</li>
+            
+        </ul>
+    </nav>
+    <main>
+        <canvas id="canvas"></canvas>
+        <div id="controls">
+            <div id="left">
+                <button id="left"><</button>
+            </div>
+            <div id="middle">
+                <button id="up">^</button>
+                <button id="down">v</button>
+
+            </div>
+            <div id="right">
+                <button id="right">></button>
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html>
+
+<style>
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    button {
+        margin:10px;
+    }
+    #controls {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 50vh;
+    }
+    #middle {
+        display: flex;
+        flex-direction: column;
+    }
+    #left, #right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+</style>
