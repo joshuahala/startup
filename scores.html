@@ -6,35 +6,38 @@
     <title>Bit Hero</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li> <a href="index.html">My Heroes</a></li>
+            <li> <a href="play.html">Play</a></li>
+            <li> <a href="scores.html">Scores</a></li>
+            
+        </ul>
+    </nav>
     <main>
-        <nav>
-            <ul>
-                <li> <a href="index.html">My Heroes</a></li>
-                <li> <a href="play.html">Play</a></li>
-                <li> <a href="scores.html">Scores</a></li>
-                
-            </ul>
-        </nav>
-        <div id="heroes-container">
-            <div class="hero-card"  style="background-image: url('bluecube.png')">
-                <div class="card-bottom">
-                    <p>LVL 1</p>
-                    <p><a href="play.html">TRAIN</a></p>
-                </div>
-            </div>
-            <div class="hero-card"  style="background-image: url('redcube.png')">
-                <div class="card-bottom">
-                    <p>LVL 1</p>
-                    <p><a href="play.html">TRAIN</a></p>
-                </div>
-            </div>
-            <div class="hero-card"  style="background-image: url('cube.jpg')">
-                <div class="card-bottom">
-                    <p>LVL 1</p>
-                    <p><a href="play.html">TRAIN</a></p>
-                </div>
-            </div>
-        </div>
+        <h1>Top Scores</h1>
+        <table>
+            <tr>
+                <td>Josh B</td>
+                <td>52</td>
+                <td>3 Heroes</td>
+            </tr>
+            <tr>
+                <td>Alexander James</td>
+                <td>45</td>
+                <td>2 Heroes</td>
+            </tr>
+            <tr>
+                <td>J. Caesar</td>
+                <td>36</td>
+                <td>2 Heroes</td>
+            </tr>
+            <tr>
+                <td>Aristotle</td>
+                <td>22</td>
+                <td>1 Heroes</td>
+            </tr>
+        </table>
     </main>
     
 </body>
@@ -48,6 +51,21 @@
     nav {
         background-color: grey;
         margin: 0;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    td {
+        margin: 20px;
+        padding: 20px;
+    }
+    tr {
+        border: 2px solid black;
     }
     
     ul {
