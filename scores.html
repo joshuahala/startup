@@ -17,6 +17,11 @@
         </ul>
     </nav>
     <main>
+        <div id="challenge-notification">
+            <p>Aristotle's Bit Hero is weak!</p>
+            <p>challenge him?</p>
+            <p><button>Yes</button><button>No</button></p>
+        </div>
         <h1>Top Scores</h1>
         <table>
             <tr>
@@ -74,6 +79,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    #challenge-notification {
+        position: absolute;
+        left: 20px;
+        border: 1px solid grey;
     }
     
     td, th {
