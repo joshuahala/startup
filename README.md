@@ -32,4 +32,10 @@ Users will create accounts where they will keep track of their Heroes and scores
 #### **Web Sockets:** 
 Users will be able to see other players scores. They will receive notifications about the status of other Players. Users can steal Heroes from other players and will be notified when they have that option.
 
+# HTML Deliverable
+Below is a summary of the html that makes up the structure of my startup website.
+
+## 5 pages including: Login, My Heroes, Play, Scores, and Challenge.
+##
+
 
