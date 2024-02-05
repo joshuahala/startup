@@ -6,15 +6,18 @@
     <title>Bit Hero</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li> <a href="index.html">My Heroes</a></li>
+            <li> <a href="play.html">Play</a></li>
+            <li> <a href="scores.html">Scores</a></li>
+            <li id="username">Josh Burgoyne</li>
+            
+        </ul>
+    </nav>
     <main>
-        <nav>
-            <ul>
-                <li> <a href="index.html">My Heroes</a></li>
-                <li> <a href="play.html">Play</a></li>
-                <li> <a href="scores.html">Scores</a></li>
-                
-            </ul>
-        </nav>
+        
+        <h2>My Bit Heroes</h2>
         <div id="heroes-container">
             <div class="hero-card"  style="background-image: url('bluecube.png')">
                 <div class="card-bottom">
@@ -54,8 +57,11 @@
         background-color: grey;
         margin: 0;
     }
-    
+    main {
+        text-align: center;
+    }
     ul {
+        display: flex;
         margin:0;
         padding:20px;
     }
@@ -64,6 +70,11 @@
        display: inline;
        text-decoration: none;
        margin: 10px;
+    }
+
+    #username {
+        position:absolute;
+        right: 20px;
     }
 
     #heroes-container {
