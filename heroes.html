@@ -12,50 +12,39 @@
             <li> <a href="play.html">Play</a></li>
             <li> <a href="scores.html">Scores</a></li>
             <li id="username">Josh Burgoyne</li>
-
             
         </ul>
     </nav>
     <main>
-        <h1>Top Scores</h1>
-        <table>
-            <tr>
-                <th>Username</th>
-                <th>High Score</th>
-                <th>Heroes</th>
-                <th>Top Level</th>
-            </tr>
-            <tr>
-                <td>Josh B</td>
-                <td>52</td>
-                <td>3 Heroes</td>
-                <td>LVL 2</td>
-            </tr>
-            <tr>
-                <td>Alexander James</td>
-                <td>45</td>
-                <td>2 Heroes</td>
-                <td>LVL 2</td>
-            </tr>
-            <tr>
-                <td>J. Caesar</td>
-                <td>36</td>
-                <td>2 Heroes</td>
-                <td>LVL 2</td>
-            </tr>
-            <tr>
-                <td>Aristotle</td>
-                <td>22</td>
-                <td>1 Heroes</td>
-                <td>LVL 2</td>
-            </tr>
-        </table>
+        
+        <h2>My Bit Heroes</h2>
+        <div id="heroes-container">
+            <div class="hero-card"  style="background-image: url('bluecube.png')">
+                <div class="card-bottom">
+                    <p>LVL 1</p>
+                    <p><a href="play.html">TRAIN</a></p>
+                </div>
+            </div>
+            <div class="hero-card"  style="background-image: url('redcube.png')">
+                <div class="card-bottom">
+                    <p>LVL 1</p>
+                    <p><a href="play.html">TRAIN</a></p>
+                </div>
+            </div>
+            <div class="hero-card"  style="background-image: url('cube.jpg')">
+                <div class="card-bottom">
+                    <p>LVL 1</p>
+                    <p><a href="play.html">TRAIN</a></p>
+                </div>
+            </div>
+        </div>
     </main>
     <footer>
         
         <a href="https://github.com/joshuahala/startup">My Startup on Github</a>
         
     </footer>
+    
 </body>
 </html>
 
@@ -68,36 +57,24 @@
         background-color: grey;
         margin: 0;
     }
-
     main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
     }
-    
-    td, th {
-        margin: 20px;
-        padding: 20px;
-    }
-    tr {
-        border: 2px solid black;
-    }
-    
     ul {
+        display: flex;
         margin:0;
         padding:20px;
-        display: flex;
-    }
-    #username {
-        position: absolute;
-        right: 20px;
     }
 
     li {
        display: inline;
        text-decoration: none;
        margin: 10px;
+    }
+
+    #username {
+        position:absolute;
+        right: 20px;
     }
 
     #heroes-container {
@@ -140,5 +117,9 @@
         width: 100%;
         text-align: center;
         padding: 10px 0px 10px 0px;
+    }
+
+    @media (orientation:portrait) {
+        
     }
 </style>

@@ -6,116 +6,50 @@
     <title>Bit Hero</title>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li> <a href="index.html">My Heroes</a></li>
-            <li> <a href="play.html">Play</a></li>
-            <li> <a href="scores.html">Scores</a></li>
-            <li id="username">Josh Burgoyne</li>
-            
-        </ul>
-    </nav>
-    <main>
-        
-        <h2>My Bit Heroes</h2>
-        <div id="heroes-container">
-            <div class="hero-card"  style="background-image: url('bluecube.png')">
-                <div class="card-bottom">
-                    <p>LVL 1</p>
-                    <p><a href="play.html">TRAIN</a></p>
-                </div>
-            </div>
-            <div class="hero-card"  style="background-image: url('redcube.png')">
-                <div class="card-bottom">
-                    <p>LVL 1</p>
-                    <p><a href="play.html">TRAIN</a></p>
-                </div>
-            </div>
-            <div class="hero-card"  style="background-image: url('cube.jpg')">
-                <div class="card-bottom">
-                    <p>LVL 1</p>
-                    <p><a href="play.html">TRAIN</a></p>
-                </div>
-            </div>
+    <div id="card">
+        <h1>Bit Hero</h1>
+        <p>Username</p>
+        <input type="text">
+        <p>Password</p>
+        <input type="text">
+        <div id="buttons">
+            <button id="create">Create</button>
+            <button id="login"><a href="heroes.html">Login</a></button>
         </div>
-    </main>
-    <footer>
-        
-        <a href="https://github.com/joshuahala/startup">My Startup on Github</a>
-        
-    </footer>
-    
+    </div>
 </body>
 </html>
 
 <style>
     body {
-        margin:0;
-        padding:0;
-    }
-    nav {
-        background-color: grey;
-        margin: 0;
-    }
-    main {
-        text-align: center;
-    }
-    ul {
-        display: flex;
-        margin:0;
-        padding:20px;
+        background-color: black;
     }
 
-    li {
-       display: inline;
-       text-decoration: none;
-       margin: 10px;
-    }
-
-    #username {
-        position:absolute;
-        right: 20px;
-    }
-
-    #heroes-container {
-        display: flex;
-        justify-content: center;
-    }
-
-    a {
-        text-decoration: none;
-        color: white;
-    }
-
-    .card-bottom {
-        display: flex;
-        flex: 1;
-        justify-content: space-between;
-        padding-left: 5px;
-        padding-right: 5px;
-        background-color: rgba(0, 0, 0, 0.429);
-        color: white;
-        text-decoration: none;
-        font-style: normal;
-    }
-    .hero-card {
-        display: flex;
-        align-items: flex-end;
-        width: 200px;
-        height: 200px;
-        background-color: rgb(169, 81, 43);
-        border: 2px solid grey;
-        margin: 20px;
-        background-size: contain;
-    }
-    footer {
-        color: black;
-        background-color: gray;
-        bottom: 0px;
+    #card {
+        background-color: rgb(61, 36, 36);
         position: absolute;
-        height: auto;
-        width: 100%;
+        width: 400px;
+        height: 500px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         text-align: center;
-        padding: 10px 0px 10px 0px;
     }
+
+    #buttons {
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        
+    }
+    button {
+        padding: 10px;
+        margin: 10px;
+    }
+    input {
+        width: 60%;
+        height: 30px;
+    }
+    
 </style>
