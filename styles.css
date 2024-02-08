@@ -12,15 +12,29 @@ body {
     margin:0;
     padding:0;
     font-family: 'Pixelify Sans';
+    background-color: rgb(45, 45, 45);
+
 }
 nav {
-    background-color: rgb(205, 27, 27);
+    background-color: rgb(85, 85, 85);
     margin: 0;
+    display: flex;
+    align-items: baseline;
 }
 
 ul {
     margin:0;
-    
+    padding:20px;
+    display: flex;
+    align-items: baseline;
+}
+h1 {
+    font-family: 'Pixelify Sans', sans-serif;
+    padding: 0;
+    margin: 10px 20px 10px 10px;
+}
+#username {
+    justify-self: flex-end;
 }
 
 li {
