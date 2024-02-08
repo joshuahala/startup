@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
     <title>Bit Hero</title>
 </head>
 <body>
     <nav>
         <ul>
+            <h1>bit hero</h1>
             <li> <a href="heroes.html">My Heroes</a></li>
             <li> <a href="play.html">Play</a></li>
             <li> <a href="scores.html">Scores</a></li>
@@ -52,8 +55,10 @@
 
 <style>
     body {
+        font-family: ;
         margin:0;
         padding:0;
+        background-color: rgb(85, 85, 85);
     }
     nav {
         background-color: grey;
@@ -62,10 +67,15 @@
     main {
         text-align: center;
     }
+    h1 {
+        font-family: 'Pixelify Sans', sans-serif;
+        padding: 0;
+        marign: 0;
+    }
     ul {
         display: flex;
+        align-items: center;
         margin:0;
-        padding:20px;
     }
 
     li {
@@ -109,7 +119,12 @@
         border: 2px solid grey;
         margin: 20px;
         background-size: contain;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+    .hero-card:hover {
+    transform: scale(1.1); /* Makes the card grow in size */
+    transition: transform 0.2s ease-in-out; /* Smooth transition */
+}
     footer {
         color: black;
         background-color: gray;

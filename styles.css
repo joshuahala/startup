@@ -1,15 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fjalla+One&family=Lato:ital,wght@0,100;1,100&family=Pixelify+Sans&family=Roboto+Slab:wght@200;900&family=Roboto:ital,wght@0,300;1,100;1,300;1,900&family=Rubik+Doodle+Shadow&display=swap');
+@font-face {
+    font-family: 'Roboto-medium';
+    src: url('fonts/Roboto-Medium.ttf');
+}
+@font-face {
+    font-family: 'Roboto-light';
+    src: url('fonts/Roboto-Light.ttf');
+}
+
 body {
     margin:0;
     padding:0;
+    font-family: 'Pixelify Sans';
 }
 nav {
-    background-color: grey;
+    background-color: rgb(205, 27, 27);
     margin: 0;
 }
 
 ul {
     margin:0;
-    padding:20px;
+    
 }
 
 li {
