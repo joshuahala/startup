@@ -7,14 +7,25 @@
     font-family: 'Roboto-light';
     src: url('fonts/Roboto-Light.ttf');
 }
+@font-face {
+    font-family: 'Roboto-Thin';
+    src: url('fonts/Roboto-Thin.ttf');
+}
+
+:root {
+    --primary-color: rgb(45, 45, 45);
+    --secondary-color: rgb(81, 68, 68);
+    --text-color: #333;
+  }
 
 body {
     
     height: 100%;
     margin:0;
     padding:0;
-    font-family: 'Pixelify Sans';
-    background-color: rgb(45, 45, 45);
+    font-family: 'Roboto-Thin';
+    background-color: var(--primary-color);
+    color: white;
 
 }
 nav {
@@ -22,11 +33,12 @@ nav {
     flex-direction: row;
     align-items: baseline;
     justify-content: space-between;
-    background-color: rgb(85, 85, 85);
+    background-color: var(--secondary-color);
     margin: 0;
     padding: 5px 30px 5px 20px;
     color: white;
     width: auto;
+    font-family: 'Pixelify Sans';
 }
 #nav-left {
     display: flex;
@@ -65,6 +77,44 @@ h1 {
     margin: 10px 20px 10px 10px;
 }
 
+h2 {
+    font-family: 'Pixelify Sans', sans-serif;
+    
+}
+
+.card-bottom {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: rgba(0, 0, 0, 0.429);
+    color: white;
+    text-decoration: none;
+    font-style: normal;
+}
+.hero-card {
+    display: flex;
+    align-items: flex-end;
+    width: 200px;
+    height: 200px;
+    background-color: var(--secondary-color);
+    border: 2px solid grey;
+    margin: 20px;
+    background-size: contain;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.hero-card:hover {
+transform: scale(1.1); /* Makes the card grow in size */
+transition: transform 0.2s ease-in-out; /* Smooth transition */
+}
+
+.player-name {
+    font-family: 'Pixelify Sans', sans-serif;
+    
+}
+
+
 
 #canvas {
     margin-top: 30px;
@@ -77,8 +127,9 @@ h1 {
 
 footer {
     color: black;
-    background-color: gray;
-    
+    background-color:var(--secondary-color);
+    position: absolute;
+    bottom: 0px;
     height: auto;
     width: 100%;
     text-align: center;

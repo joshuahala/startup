@@ -22,16 +22,18 @@
     </nav>
     <main>
         <div id="player-notifications">
-            <p>J Caesar started a game.</p>
-            <p>Alexander scored 15</p>
-            <p>Alexander's Hero leveled up!</p>
+            <p><span class="player-name">J Caesar</span> started a game.</p>
+            <p><span class="player-name">Alexander</span> scored 15</p>
+            <p><span class="player-name">Alexander's</span> Hero leveled up!</p>
         </div>
 
         <div id="game">
-            <p>PRESS ENTER TO START</p>
+            <h2>PRESS ENTER TO START</h2>
             <p>Score: 20</p>
             
-            <canvas id="canvas"></canvas>
+            <div id="canvas-div">
+                <canvas id="canvas"></canvas>
+            </div>
             <div id="controls">
                 <div id="left">
                     <div style="background-image: url('arrowLeft.png');" class="arrow" id="left"></div>
@@ -69,6 +71,16 @@
         height: 100%;
         color: white;
     }
+
+    canvas {
+        border: 3px solid grey;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    #canvas-div {
+        margin: 0px;
+        padding: 0px;
+    }
     
     #game {
         flex: 1;
@@ -91,6 +103,9 @@
         justify-content: flex-start;
         padding: 10px;
     }
+    .player-name {
+        color: rgb(229, 218, 21);
+    }
     
     button {
         margin:10px;
@@ -100,6 +115,9 @@
         height: 40px;
         width: 40px;
         background-size: contain;
+    }
+    .arrow:active {
+        background-color: rgba(255, 255, 255, 0.636);
     }
     #controls {
         display: flex;
@@ -122,11 +140,7 @@
         align-items: center;
         justify-content: center;
     } 
-    footer {
-        color: black;
-        position: absolute;
-        bottom: 0px;
-    }
+    
     
     
 </style>
