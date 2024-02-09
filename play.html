@@ -26,55 +26,80 @@
             <p>Alexander scored 15</p>
             <p>Alexander's Hero leveled up!</p>
         </div>
-        <p>“Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway.”</p>
-        <p>-Earl Nightingale</p>
-        <p>PRESS ENTER TO START</p>
-        <p>Score: 20</p>
-        <canvas id="canvas"></canvas>
-        <div id="controls">
-            <div id="left">
-                <button id="left"><</button>
-            </div>
-            <div id="middle">
-                <button id="up">^</button>
-                <button id="down">v</button>
 
+        <div id="game">
+            <p>PRESS ENTER TO START</p>
+            <p>Score: 20</p>
+            
+            <canvas id="canvas"></canvas>
+            <div id="controls">
+                <div id="left">
+                    <div style="background-image: url('arrowLeft.png');" class="arrow" id="left"></div>
+                </div>
+                <div id="middle">
+                    <div style="background-image: url('arrow.png');" class="arrow" id="up"></div>
+                    <div style="background-image: url('arrowDown.png');" class="arrow" id="down"></div>
+                    
+                </div>
+                <div id="right">
+                    <div style="background-image: url('arrowRight.png');" class="arrow" id="right"></div>
+                </div>
             </div>
-            <div id="right">
-                <button id="right">></button>
-            </div>
+        </div>
+        <div id="quote">
+            <p>“Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway.”</p>
+            <p>-Earl Nightingale</p>
         </div>
     </main>
     <footer>
-        
         <a href="https://github.com/joshuahala/startup">My Startup on Github</a>
-        
+
     </footer>
     
 </body>
 </html>
 
 <style>
-    body {
+    
+     main {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0px 20px 0px 20px;
         height: 100%;
+        color: white;
     }
-    main {
+    
+    #game {
+        flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
     }
-   
+
+    #quote {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     
     #player-notifications {
-        position: absolute;
-        left: 20px;
-        top: 100px;
-        border: 1px solid grey;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         padding: 10px;
     }
+    
     button {
         margin:10px;
+    }
+    
+    .arrow {
+        height: 40px;
+        width: 40px;
+        background-size: contain;
     }
     #controls {
         display: flex;
@@ -86,21 +111,22 @@
     #middle {
         display: flex;
         flex-direction: column;
+        
+    }
+    #up, #down {
+        margin: 10px 0px 10px 0px;
     }
     #left, #right {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-    }
+    } 
     footer {
         color: black;
-        background-color: gray;
-        
-        height: auto;
-        width: 100%;
-        text-align: center;
-        padding: 10px 0px 10px 0px;
+        position: absolute;
+        bottom: 0px;
     }
+    
     
 </style>
