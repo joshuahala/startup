@@ -13,8 +13,8 @@
 }
 
 :root {
-    --primary-color: rgb(45, 45, 45);
-    --secondary-color: rgb(81, 68, 68);
+    --primary-color: rgb(36, 36, 43);
+    --secondary-color: rgb(69, 68, 68);
     --text-color: #333;
   }
 
@@ -80,6 +80,15 @@ h1 {
 h2 {
     font-family: 'Pixelify Sans', sans-serif;
     
+}
+
+button {
+    background-color: var(--secondary-color);
+    font-family: 'Pixelify Sans';
+    color: white;
+    border: 1px solid grey;
+    padding: 6px 12px;
+    margin: 5px;
 }
 
 .card-bottom {
