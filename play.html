@@ -8,16 +8,17 @@
 </head>
 <body>
     <nav>
-        <ul>
+        <div id="nav-left">
             <h1>bit hero</h1>
-            <li> <a href="heroes.html">My Heroes</a></li>
-            <li> <a href="play.html">Play</a></li>
-            <li> <a href="scores.html">Scores</a></li>
-            <li> <a href="challenge.html">Challenge</a></li>
+            <a href="heroes.html">My Heroes</a>
+            <a href="play.html">Play</a>
+            <a href="scores.html">Scores</a>
+            <a href="challenge.html">Challenge</a>
+        </div>
 
-            <li id="username">Josh Burgoyne</li>
-            
-        </ul>
+        <div id="nav-right">
+            <p id="username">Username</p>
+        </div>
     </nav>
     <main>
         <div id="player-notifications">
@@ -63,15 +64,8 @@
         justify-content: center;
         align-items: center;
     }
-    a {
-        text-decoration: none;
-        color: white;
-    }
+   
     
-    #username {
-        position: absolute;
-        right: 20px;
-    }
     #player-notifications {
         position: absolute;
         left: 20px;

@@ -16,11 +16,29 @@ body {
 
 }
 nav {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
     background-color: rgb(85, 85, 85);
     margin: 0;
-    display: flex;
-    align-items: baseline;
+    padding: 5px 30px 5px 20px;
+    color: white;
+    width: auto;
 }
+#nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+#nav-left h1 {
+    color: black;
+}
+#nav-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
 
 ul {
     margin:0;
@@ -28,20 +46,23 @@ ul {
     display: flex;
     align-items: baseline;
 }
-h1 {
-    font-family: 'Pixelify Sans', sans-serif;
-    padding: 0;
-    margin: 10px 20px 10px 10px;
-}
-#username {
-    justify-self: flex-end;
-}
 
 li {
    display: inline;
    text-decoration: none;
    margin: 10px;
 }
+
+a {
+    text-decoration: none;
+    color: white;
+}
+h1 {
+    font-family: 'Pixelify Sans', sans-serif;
+    padding: 0;
+    margin: 10px 20px 10px 10px;
+}
+
 
 #canvas {
     margin-top: 30px;

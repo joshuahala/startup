@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav>
-        <ul>
+        <!-- <ul>
             <h1>bit hero</h1>
             <li> <a href="heroes.html">My Heroes</a></li>
             <li> <a href="play.html">Play</a></li>
@@ -18,7 +18,19 @@
 
             <li id="username">Josh Burgoyne</li>
             
-        </ul>
+        </ul> -->
+        <div id="nav-left">
+            <h1>bit hero</h1>
+            <a href="heroes.html">My Heroes</a>
+            <a href="play.html">Play</a>
+            <a href="scores.html">Scores</a>
+            <a href="challenge.html">Challenge</a>
+        </div>
+
+        <div id="nav-right">
+            <p id="username">Username</p>
+        </div>
+
     </nav>
     <main>
         <div id="challenge-notification">
@@ -73,9 +85,7 @@
         margin:0;
         padding:0;
     }
-    nav {
-        margin: 0;
-    }
+    
 
     main {
         display: flex;
@@ -98,32 +108,17 @@
         border: 2px solid black;
     }
     
-    ul {
-        margin:0;
-        padding:20px;
-        display: flex;
-    }
-    #username {
-        position: absolute;
-        right: 20px;
-    }
+    
+   
 
-    li {
-       display: inline;
-       text-decoration: none;
-       margin: 10px;
-    }
+    
 
     #heroes-container {
         display: flex;
         justify-content: center;
     }
 
-    a {
-        text-decoration: none;
-        color: white;
-    }
-
+   
     .card-bottom {
         display: flex;
         flex: 1;
