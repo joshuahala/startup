@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <script src="play.js"></script>
     <title>Bit Hero</title>
 </head>
 <body>
@@ -17,7 +18,7 @@
         </div>
 
         <div id="nav-right">
-            <p id="username">Username</p>
+            <p onclick="clicked()" id="username">Username</p>
         </div>
     </nav>
     <main>
@@ -60,7 +61,6 @@
     
 </body>
 </html>
-
 <style>
     
      main {
@@ -72,15 +72,15 @@
         color: white;
     }
 
-    canvas {
+    /* canvas {
         border: 3px solid grey;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
+    } */
 
-    #canvas-div {
+    /* #canvas-div {
         margin: 0px;
         padding: 0px;
-    }
+    } */
     
     #game {
         flex: 1;
