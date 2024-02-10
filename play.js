@@ -1,9 +1,11 @@
 
 
 
-var width = window.innerWidth;
+var screenWidth = window.innerWidth;
+var width = screenWidth / 7;
 var height = width;
-var blockSize = 25;
+var blockSize = (screenWidth / 3) / 20;
+//var blockSize = 25
 var rows = 20;
 var cols = 20;
 
