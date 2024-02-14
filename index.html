@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Bit Hero</title>
 </head>
 <body>
-    <div id="card">
+    <div class="login-card">
         <h1>Bit Hero</h1>
         <p>Username</p>
         <input type="text">
@@ -22,34 +23,11 @@
 
 <style>
     body {
-        background-color: black;
-    }
-
-    #card {
-        background-color: rgb(61, 36, 36);
-        position: absolute;
-        width: 400px;
-        height: 500px;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-    }
-
-    #buttons {
-        padding: 20px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        
+        align-items: center;
+        font-size: 1em;
     }
-    button {
-        padding: 10px;
-        margin: 10px;
-    }
-    input {
-        width: 60%;
-        height: 30px;
-    }
+    
+    
     
 </style>
