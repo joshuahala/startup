@@ -48,4 +48,15 @@ On the Play.html page, an inspirational quote will be displayed after everytime 
 ### Other
 I added images, buttons, links, headers, footers, and other elements necessary for the website.
 
+# CSS Deliverable
++ done - Prerequisite: Simon CSS deployed to your production environment
++  done - Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
++  done - Prerequisite: Notes in your startup Git repository README.md file
++  done - 30% Header, footer, and main content body. Used flex to layout sections.
++  done - 20% Navigation elements. Links highlight on hover.
++  done - 10% Responsive to window resizing. Looks great on iPad, desktop, and iPhone.
++  done - 20% Application elements. Buttons are styled and have hover animations. 
++  done - 10% Application text content. I used the Pixelify Sans font for headers and buttons. Roboto light for regular text.
++  done - 10% Application images. The images have borders and backgrouond colors. They also animate on hover. They also have dropshadows.
+
 
