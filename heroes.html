@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-
+    <script src="play.js"></script>
     <title>Bit Hero</title> 
 </head>
 <body>
@@ -17,8 +17,21 @@
             <a href="challenge.html">Challenge</a>
         </div>
 
+        
+
         <div id="nav-right">
             <p id="username">Username</p>
+        </div>
+
+        <!-- Dropdown Button -->
+        <button class="dropdown-btn">Menu</button>
+
+        <!-- Dropdown Content -->
+        <div class="dropdown-content">
+            <a href="heroes.html">My Heroes</a>
+            <a href="play.html">Play</a>
+            <a href="scores.html">Scores</a>
+            <a href="challenge.html">Challenge</a>
         </div>
     </nav>
     <main>
@@ -53,28 +66,17 @@
     
 </body>
 </html>
+<script>
+    document.querySelector('.dropdown-btn').addEventListener('click', function() {
+        document.querySelector('.dropdown-content').classList.toggle('show');
+    });
+</script>
 
 <style>
-    body {
-        font-family: ;
-        margin:0;
-        padding:0;
-        
-    }
-    /* nav {
-        margin: 0;
-    } */
     main {
         text-align: center;
+       
     }
-    
-   
-
-    /* li {
-       display: inline;
-       text-decoration: none;
-       margin: 10px;
-    } */
 
     #usernames {
         position:absolute;
@@ -87,11 +89,61 @@
     }
 
     
+    /* Hide dropdown content by default */
+.dropdown-content {
+    display: none;
+}
 
-    
-    
-
-    @media (orientation:portrait) {
-        
+/* Hide dropdown button by default, will only show in portrait mode */
+.dropdown-btn {
+    display: none;
+}
+/* Media query for portrait mode */
+@media (orientation: portrait) {
+    /* Hide regular nav items */
+    #nav-left a {
+        display: none;
     }
+
+    /* Show dropdown button */
+    .dropdown-btn {
+        display: block;
+    }
+}
+
+
+/* Additional styles for dropdown content when it's shown */
+.dropdown-content.show {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background-color: var(--secondary-color);
+    padding: 10px;
+    
+}
+
+@media (orientation: landscape) {
+    /* Hide regular nav items */
+    .dropdown-content {
+        display: none;
+    }
+
+    /* Show dropdown button */
+    .dropdown-btn {
+        display: none;
+    }
+
+    .dropdown-content.show {
+        display: none;
+    }
+}
+    
+    
+
+    
 </style>

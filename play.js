@@ -1,11 +1,12 @@
 
 
-
+var showMenu = false;
 var screenWidth = window.innerWidth;
-var width = Math.round(screenWidth / 7);
+var screenHeight = window.innerHeight;
+var width;
 var height = width;
-var blockSize = Math.round((screenWidth / 3) / 20);
-//var blockSize = 25
+//var blockSize = Math.round((screenWidth / 3) / 20);
+var blockSize = screenWidth > screenHeight ? Math.ceil((screenHeight * 0.8)/20) : Math.ceil((screenWidth * 0.8)/20);
 var rows = 20;
 var cols = 20;
 
@@ -20,6 +21,8 @@ var goalX = 0 * blockSize;
 var goalY = 0 * blockSize;
 
 window.onload = function () {
+    
+
     canvas = document.getElementById('canvas');
     canvas.width = cols * blockSize;
     canvas.height = rows * blockSize;
@@ -28,12 +31,18 @@ window.onload = function () {
     setGoal();
 
     document.addEventListener("keydown", arrowMove);
+    document.querySelector('.dropdown-btn').addEventListener('click', function() {
+        document.querySelector('.dropdown-content').classList.toggle('show');
+    });
 
     setInterval(update, 1000/10);
     
 }
 
 function update() {
+    if (screenHeight > screenWidth) {
+        blockSize = Math.round((screenWidth*.75) / 20);
+    }
     context.fillStyle = "black";
     context.fillRect(0, 0, cols * blockSize, rows * blockSize);
 
@@ -54,6 +63,7 @@ function update() {
 function setGoal() {
     goalX = Math.floor(Math.random() * 19) * blockSize;
     goalY = Math.floor(Math.random() * 19) * blockSize;
+    
 }
 
 function arrowMove(e) {
@@ -76,3 +86,19 @@ function arrowMove(e) {
     }
 }
 
+document.querySelector('.dropdown-btn').addEventListener('click', function() {
+    document.querySelector('.dropdown-content').classList.toggle('show');
+});
+
+function toggleMenu() {
+    showMenu = !showMenu;
+    console.log(showMenu);
+    if (showMenu == true) {
+        document.getElementById('menu').style.display = "flex";
+        console.log("opened");
+    } else {
+        document.getElementById('menu').style.display = "none";
+        console.log("closed");
+
+    }
+}

@@ -4,21 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-
+    <script src="play.js"></script>
     <title>Bit Hero</title>
 </head>
 <body>
     <nav>
-        <!-- <ul>
-            <h1>bit hero</h1>
-            <li> <a href="heroes.html">My Heroes</a></li>
-            <li> <a href="play.html">Play</a></li>
-            <li> <a href="scores.html">Scores</a></li>
-            <li> <a href="challenge.html">Challenge</a></li>
-
-            <li id="username">Josh Burgoyne</li>
-            
-        </ul> -->
         <div id="nav-left">
             <h1>bit hero</h1>
             <a href="heroes.html">My Heroes</a>
@@ -27,17 +17,25 @@
             <a href="challenge.html">Challenge</a>
         </div>
 
+        
+
         <div id="nav-right">
             <p id="username">Username</p>
         </div>
 
+        <!-- Dropdown Button -->
+        <button id="menuBtn" onclick="toggleMenu()" class="dropdown-btn">Menu</button>
+
+        <!-- Dropdown Content -->
+        <div id="menu" class="dropdown-content">
+            <a href="heroes.html">My Heroes</a>
+            <a href="play.html">Play</a>
+            <a href="scores.html">Scores</a>
+            <a href="challenge.html">Challenge</a>
+        </div>
     </nav>
     <main>
-        <div id="challenge-notification">
-            <p>Aristotle's Bit Hero is weak!</p>
-            <p>challenge him?</p>
-            <p><button>Y</button><button>N</button></p>
-        </div>
+        
         <h1>Top Scores</h1>
         <table>
             <tr>
@@ -72,6 +70,11 @@
             </tr>
         </table>
 
+        <div id="challenge-notification">
+            <p>Aristotle's Bit Hero is weak!</p>
+            <p>challenge him?</p>
+            <p><button>Y</button><button>N</button></p>
+        </div>
        
 
 
@@ -95,7 +98,7 @@
     main {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
     }
 
@@ -147,5 +150,11 @@
         margin: 20px;
         background-size: contain;
     }
+
+    @media (orientation: portrait) {
+        #challenge-notification {
+            position:inherit;
+        }
+}
     
 </style>

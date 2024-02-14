@@ -19,8 +19,9 @@
   }
 
 body {
-    
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin:0;
     padding:0;
     font-family: 'Roboto-Thin';
@@ -30,14 +31,15 @@ body {
 }
 nav {
     display: flex;
+    flex: 1;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     background-color: var(--secondary-color);
     margin: 0;
-    padding: 5px 30px 5px 20px;
     color: white;
-    width: auto;
+    max-height: 50px;
+    width: 100vw;
     font-family: 'Pixelify Sans';
 }
 #nav-left {
@@ -51,8 +53,13 @@ nav {
 #nav-right {
     display: flex;
     justify-content: flex-end;
+    margin-right: 20px;
 }
 
+main {
+    flex: 1;
+    
+}
 
 ul {
     margin:0;
@@ -62,9 +69,9 @@ ul {
 }
 
 li {
-   display: inline;
-   text-decoration: none;
-   margin: 10px;
+    display: inline;
+    text-decoration: none;
+    margin: 10px;
 }
 
 a {
@@ -115,8 +122,8 @@ button {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .hero-card:hover {
-transform: scale(1.1); /* Makes the card grow in size */
-transition: transform 0.2s ease-in-out; /* Smooth transition */
+    transform: scale(1.1); /* Makes the card grow in size */
+    transition: transform 0.2s ease-in-out; /* Smooth transition */
 }
 
 .player-name {
@@ -130,21 +137,28 @@ transition: transform 0.2s ease-in-out; /* Smooth transition */
     margin-top: 30px;
     
     
-
+    
 }
 
 footer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: black;
     background-color:var(--secondary-color);
-    position: absolute;
     bottom: 0px;
     height: auto;
-    width: 100%;
+    width: 100vw;
     text-align: center;
     padding: 10px 0px 10px 0px;
+    max-height: 40px;
 }
 
 @media screen and (orientation: portrait) {
+    main {
+        flex-direction: column;
+    }
     #heroes-container {
         display: flex;
         flex-direction: column;
@@ -154,5 +168,72 @@ footer {
     .hero-card {
         width: 200px;
         height: 200px;
+    }
+}
+
+   /* Hide dropdown content by default */
+   .dropdown-content {
+    display: none;
+}
+
+/* Hide dropdown button by default, will only show in portrait mode */
+.dropdown-btn {
+    display: none;
+}
+/* Media query for portrait mode */
+@media (orientation: portrait) {
+    /* Hide regular nav items */
+    #nav-left a {
+        display: none;
+    }
+
+    /* Show dropdown button */
+    .dropdown-btn {
+        display: block;
+    }
+}
+
+
+.dropdown-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background-color: var(--secondary-color);
+    padding: 10px;
+    
+}
+/* Additional styles for dropdown content when it's shown */
+.dropdown-content.show {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background-color: var(--secondary-color);
+    padding: 10px;
+    
+}
+
+@media (orientation: landscape) {
+    /* Hide regular nav items */
+    .dropdown-content {
+        display: none;
+    }
+
+    /* Show dropdown button */
+    .dropdown-btn {
+        display: none;
+    }
+
+    .dropdown-content.show {
+        display: none;
     }
 }

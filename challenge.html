@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-
+    <script src="play.js"></script>
     <title>Bit Hero</title>
 </head>
 <body>
@@ -17,8 +17,21 @@
             <a href="challenge.html">Challenge</a>
         </div>
 
+        
+
         <div id="nav-right">
             <p id="username">Username</p>
+        </div>
+
+        <!-- Dropdown Button -->
+        <button onclick="toggleMenu()" class="dropdown-btn">Menu</button>
+
+        <!-- Dropdown Content -->
+        <div id="menu" class="dropdown-content">
+            <a href="heroes.html">My Heroes</a>
+            <a href="play.html">Play</a>
+            <a href="scores.html">Scores</a>
+            <a href="challenge.html">Challenge</a>
         </div>
     </nav>
     <main>
@@ -73,7 +86,5 @@
 
     
 
-    @media (orientation:portrait) {
-        
-    }
+    
 </style>

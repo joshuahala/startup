@@ -17,8 +17,21 @@
             <a href="challenge.html">Challenge</a>
         </div>
 
+        
+
         <div id="nav-right">
-            <p onclick="clicked()" id="username">Username</p>
+            <p id="username">Username</p>
+        </div>
+
+        <!-- Dropdown Button -->
+        <button class="dropdown-btn">Menu</button>
+
+        <!-- Dropdown Content -->
+        <div class="dropdown-content">
+            <a href="heroes.html">My Heroes</a>
+            <a href="play.html">Play</a>
+            <a href="scores.html">Scores</a>
+            <a href="challenge.html">Challenge</a>
         </div>
     </nav>
     <main>
@@ -32,9 +45,8 @@
             <h2>PRESS ENTER TO START</h2>
             <p>Score: <span id="score">20</span></p>
             
-            <div id="canvas-div">
-                <canvas id="canvas"></canvas>
-            </div>
+            <canvas id="canvas"></canvas>
+            
             <div id="controls">
                 <div id="left">
                     <div style="background-image: url('arrowLeft.png');" class="arrow" id="left"></div>
@@ -70,12 +82,13 @@
         padding: 0px 20px 0px 20px;
         height: 100%;
         color: white;
+        text-align: center;
     }
 
-    canvas {
+    /* canvas {
         border: 3px solid grey;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
+    } */
 
     /* #canvas-div {
         margin: 0px;
@@ -113,7 +126,7 @@
     
     .arrow {
         height: 40px;
-        width: 40px;
+        width: 40px;    
         background-size: contain;
     }
     .arrow:active {
@@ -124,7 +137,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        width: 50vh;
+        
     }
     #middle {
         display: flex;
@@ -141,6 +154,23 @@
         justify-content: center;
     } 
     
+    @media screen and (orientation: portrait) {
+    main {
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+    }
+    #heroes-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-card {
+        width: 200px;
+        height: 200px;
+    }
+}
     
     
 </style>
