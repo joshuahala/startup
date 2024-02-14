@@ -49,6 +49,7 @@ On the Play.html page, an inspirational quote will be displayed after everytime 
 I added images, buttons, links, headers, footers, and other elements necessary for the website.
 
 # CSS Deliverable
+index.html is the login page. Press the login button to get to the other pages.
 + done - Prerequisite: Simon CSS deployed to your production environment
 +  done - Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
 +  done - Prerequisite: Notes in your startup Git repository README.md file
