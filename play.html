@@ -49,15 +49,15 @@
             
             <div id="controls">
                 <div id="left">
-                    <div style="background-image: url('arrowLeft.png');" class="arrow" id="left"></div>
+                    <div onclick="move('left')" style="background-image: url('assets/images/arrowLeft.png');" class="arrow" id="left"></div>
                 </div>
                 <div id="middle">
-                    <div style="background-image: url('arrow.png');" class="arrow" id="up"></div>
-                    <div style="background-image: url('arrowDown.png');" class="arrow" id="down"></div>
+                    <div onclick="move('up')" style="background-image: url('assets/images/arrow.png');" class="arrow" id="up"></div>
+                    <div onclick="move('down')" style="background-image: url('assets/images/arrowDown.png');" class="arrow" id="down"></div>
                     
                 </div>
                 <div id="right">
-                    <div style="background-image: url('arrowRight.png');" class="arrow" id="right"></div>
+                    <div onclick="move('right')" style="background-image: url('assets/images/arrowRight.png');" class="arrow" id="right"></div>
                 </div>
             </div>
         </div>
@@ -125,9 +125,10 @@
     }
     
     .arrow {
-        height: 40px;
-        width: 40px;    
+        height: 60px;
+        width: 60px;    
         background-size: contain;
+        padding: 10px;
     }
     .arrow:active {
         background-color: rgba(255, 255, 255, 0.636);

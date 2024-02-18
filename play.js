@@ -6,7 +6,7 @@ var screenHeight = window.innerHeight;
 var width;
 var height = width;
 //var blockSize = Math.round((screenWidth / 3) / 20);
-var blockSize = screenWidth > screenHeight ? Math.ceil((screenHeight * 0.6)/20) : Math.ceil((screenWidth * 0.8)/20);
+var blockSize = screenWidth > screenHeight ? Math.floor((screenHeight * 0.6)/20) : Math.floor((screenWidth * 0.8)/20);
 var rows = 20;
 var cols = 20;
 
@@ -29,6 +29,8 @@ window.onload = function () {
     context = canvas.getContext("2d");
 
     setGoal();
+
+    
 
     document.addEventListener("keydown", arrowMove);
     document.querySelector('.dropdown-btn').addEventListener('click', function() {
@@ -82,6 +84,21 @@ function arrowMove(e) {
         heroX -= 1 * blockSize;
     }
     else if ((e.key == "ArrowRight" || e.key == "d") && heroX != 19*blockSize) {
+        heroX += 1 * blockSize;
+    }
+}
+
+function move(direction) {
+    if (direction == "up" && heroY != 0) {
+        heroY -= 1 * blockSize;
+    }
+    else if (direction == "down" && heroY != 19*blockSize) {
+        heroY += 1 * blockSize;
+    }
+    else if (direction == "left" && heroX != 0) {
+        heroX -= 1 * blockSize;
+    }
+    else if (direction == "right" && heroX != 19*blockSize) {
         heroX += 1 * blockSize;
     }
 }
