@@ -11,6 +11,8 @@ var rows = 20;
 var cols = 20;
 
 var score = 0;
+let lives = 3;
+let spawnHazards = true;
 
 var context;
 
@@ -56,9 +58,15 @@ window.onload = function () {
     context = canvas.getContext("2d");
 
     setGoal();
-    spawnHazard();
+    //spawnHazard();
 
-    
+    document.addEventListener("keyup", (e) => {
+        if (e.key == " ") {
+            spawnHazards = !spawnHazards;
+            lives = 3;
+            score = 0;
+        }
+    });
 
     document.addEventListener("keydown", arrowMove);
     document.querySelector('.dropdown-btn').addEventListener('click', function() {
@@ -66,6 +74,8 @@ window.onload = function () {
     });
 
     setInterval(update, 1000/10);
+    setInterval(spawnHazard, 1000/2);
+    
     
 }
 
@@ -83,11 +93,16 @@ function update() {
     context.fillRect(goalX, goalY, blockSize, blockSize);
 
     
-
+    
+    // update hazard movement
     for(let hazard of hazards){
         context.fillStyle = "red";
         context.fillRect(hazard.hx, hazard.hy, blockSize, blockSize);
         hazard.move();
+        //check for collision
+        if(heroX == hazard.hx && heroY == hazard.hy) {
+            spawnHazards = false;
+        }
     }
 
     //check if reached goal
@@ -95,6 +110,8 @@ function update() {
         score ++;
         setGoal();
     }
+    
+    
     document.getElementById('score').innerHTML = score;
 }
 
@@ -105,6 +122,9 @@ function setGoal() {
 }
 
 function spawnHazard() {
+    if(spawnHazards == false){
+        return;
+    }
     let side = Math.floor(Math.random() * 3 + 1);
     let x;
     let y;
@@ -139,6 +159,10 @@ function spawnHazard() {
 
     let hazard = new Hazard(x*blockSize, y*blockSize, direction);
     hazards.push(hazard);
+    if(hazards.length > 8) {
+        hazards.splice(0,1);
+    }
+    console.log(hazards.length);
 }
 
 function arrowMove(e) {
