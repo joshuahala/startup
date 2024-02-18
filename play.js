@@ -29,11 +29,20 @@ class Hazard {
         this.dir = dir;
     }
 
-    
+
 
     move() {
         if(this.dir == "up") {
             this.hy -=1 * (blockSize/2);
+        }
+        if(this.dir == "down") {
+            this.hy +=1 * (blockSize/2);
+        }
+        if(this.dir == "left") {
+            this.hx -=1 * (blockSize/2);
+        }
+        if(this.dir == "right") {
+            this.hx +=1 * (blockSize/2);
         }
     }
 }
@@ -96,10 +105,40 @@ function setGoal() {
 }
 
 function spawnHazard() {
-    let hazard = new Hazard(19*blockSize, 19*blockSize, "up");
+    let side = Math.floor(Math.random() * 3 + 1);
+    let x;
+    let y;
+    let direction;
+    switch(side){
+        //top
+        case 1:
+            y = 0;
+            x = Math.floor(Math.random() * 13 + 3);
+            direction = "down";
+            break;
+        //right
+        case 2:
+            y = Math.floor(Math.random() * 13 + 3);
+            x = 19;
+            direction = "left";
+            break;
+        //bottom
+        case 3:
+            y = 19;
+            x = Math.floor(Math.random() * 13 + 3);
+            direction = "up";
+            break;
+        //left
+        case 4:
+            y = Math.floor(Math.random() * 13 + 3);
+            x = 0;
+            direction = "right";
+            break;
+    }
+
+
+    let hazard = new Hazard(x*blockSize, y*blockSize, direction);
     hazards.push(hazard);
-    let hazard2 = new Hazard(10*blockSize, 10*blockSize, "up");
-    hazards.push(hazard2);
 }
 
 function arrowMove(e) {
