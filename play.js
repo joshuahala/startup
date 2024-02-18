@@ -20,6 +20,24 @@ var heroY = 0;
 var goalX = 0 * blockSize;
 var goalY = 0 * blockSize;
 
+let hazards = [];
+
+class Hazard {
+    constructor(hx, hy, dir) {
+        this.hx = hx;
+        this.hy = hy;
+        this.dir = dir;
+    }
+
+    
+
+    move() {
+        if(this.dir == "up") {
+            this.hy -=1 * (blockSize/2);
+        }
+    }
+}
+
 window.onload = function () {
     
 
@@ -29,6 +47,7 @@ window.onload = function () {
     context = canvas.getContext("2d");
 
     setGoal();
+    spawnHazard();
 
     
 
@@ -54,6 +73,14 @@ function update() {
     context.fillStyle = "lime";
     context.fillRect(goalX, goalY, blockSize, blockSize);
 
+    
+
+    for(let hazard of hazards){
+        context.fillStyle = "red";
+        context.fillRect(hazard.hx, hazard.hy, blockSize, blockSize);
+        hazard.move();
+    }
+
     //check if reached goal
     if (goalX == heroX && goalY == heroY) {
         score ++;
@@ -66,6 +93,13 @@ function setGoal() {
     goalX = Math.floor(Math.random() * 19) * blockSize;
     goalY = Math.floor(Math.random() * 19) * blockSize;
     
+}
+
+function spawnHazard() {
+    let hazard = new Hazard(19*blockSize, 19*blockSize, "up");
+    hazards.push(hazard);
+    let hazard2 = new Hazard(10*blockSize, 10*blockSize, "up");
+    hazards.push(hazard2);
 }
 
 function arrowMove(e) {
