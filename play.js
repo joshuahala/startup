@@ -11,6 +11,7 @@ var rows = 20;
 var cols = 20;
 
 var score = 0;
+let topScore = 0;
 let lives = 3;
 let spawnHazards = false;
 
@@ -107,6 +108,10 @@ function update() {
         if(heroX == hazard.hx && heroY == hazard.hy) {
             spawnHazards = false;
             document.getElementById('start-text').style.display = "block";
+            if (score > topScore) {
+                topScore = score;
+                document.getElementById('top-score').textContent = topScore;
+            }
         }
     }
 
@@ -115,6 +120,8 @@ function update() {
         score ++;
         setGoal();
     }
+
+    
     
     
     document.getElementById('score').innerHTML = score;

@@ -46,7 +46,15 @@
                 <h2>PRESS ENTER TO START</h2>
                 <p>or click here</p>
             </div>
-            <p>Score: <span id="score">20</span></p>
+            <div id="scores">
+                <div>
+                    <p>Current Score: <span id="score">0</span></p>
+                </div>
+                <div>
+                    <p>Top Score: <span id="top-score">0</span></p>
+                </div>
+                
+            </div>
             
             <canvas id="canvas"></canvas>
             
@@ -110,6 +118,7 @@
         flex-direction: column;
         align-items: center;
     }
+   
 
     #quote {
         flex: 1;
@@ -180,7 +189,12 @@
         width: 200px;
         height: 200px;
     }
-}
-    
+
+    }
+    #scores {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     
 </style>
