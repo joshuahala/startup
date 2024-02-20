@@ -24,6 +24,7 @@ var goalX = 0 * blockSize;
 var goalY = 0 * blockSize;
 
 let hazards = [];
+let lazerOn = false;
 
 const startText = document.getElementById('start-text');
 
@@ -49,6 +50,13 @@ class Hazard {
         if(this.dir == "right") {
             this.hx +=1 * (blockSize/2);
         }
+    }
+}
+
+class Lazer {
+    constructor(x, y){
+        this.x = x;
+        this.y = y;
     }
 }
 
@@ -80,6 +88,7 @@ window.onload = function () {
 
     setInterval(update, 1000/10);
     setInterval(spawnHazard, 1000/2);
+    setInterval(spawnLazer, 5000);
     
     
 }
@@ -96,6 +105,7 @@ function update() {
 
     context.fillStyle = "lime";
     context.fillRect(goalX, goalY, blockSize, blockSize);
+
 
     
     
@@ -168,7 +178,6 @@ function spawnHazard() {
             break;
     }
 
-
     let hazard = new Hazard(x*blockSize, y*blockSize, direction);
     hazards.push(hazard);
     if(hazards.length > 8) {
@@ -236,4 +245,18 @@ function startGame() {
     spawnHazards = true;
     document.getElementById('start-text').style.display = "none";
 }
+function fireLazer(lazer) {
+    context.fillStyle = "black";
+    context.fillRect(lazer.x*blockSize, lazer.y, blockSize, 19*blockSize);
+}
+function toggleLazer() {
+    lazerOn = !lazerOn;
+}
+function spawnLazer() {
+    toggleLazer();
+    let lazer = new Lazer(5, 0);
+    lazerOn == false ? context.fillStyle = "yellow" : context.fillStyle = "black";
+    context.fillRect(lazer.x*blockSize, lazer.y, blockSize, blockSize);
+    context.fillRect(lazer.x*blockSize, lazer.y+(19*blockSize), blockSize, blockSize);
 
+}
