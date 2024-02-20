@@ -42,7 +42,10 @@
         </div>
 
         <div id="game">
-            <h2>PRESS ENTER TO START</h2>
+            <div id="start-text" onclick="startGame()">
+                <h2>PRESS ENTER TO START</h2>
+                <p>or click here</p>
+            </div>
             <p>Score: <span id="score">20</span></p>
             
             <canvas id="canvas"></canvas>
@@ -83,6 +86,12 @@
         height: 100%;
         color: white;
         text-align: center;
+    }
+
+    #start-text {
+        background-color: black;
+        position: absolute;
+        top: 45%;
     }
 
     /* canvas {
