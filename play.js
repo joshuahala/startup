@@ -1,4 +1,8 @@
 
+let username;
+let password;
+let dummyUsername = "me";
+let dummyPassword = "pass";
 
 var showMenu = false;
 var screenWidth = window.innerWidth;
@@ -61,16 +65,19 @@ class Lazer {
 }
 
 window.onload = function () {
+    var username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById('username').textContent = username;
+    }
     
-
     canvas = document.getElementById('canvas');
     canvas.width = cols * blockSize;
     canvas.height = rows * blockSize;
     context = canvas.getContext("2d");
-
+    
     setGoal();
     //spawnHazard();
-
+    
     document.addEventListener("keyup", (e) => {
         if (e.key == 'Enter') {
             spawnHazards = !spawnHazards;
@@ -80,15 +87,15 @@ window.onload = function () {
         }
         console.log(e.key);
     });
-
+    
     document.addEventListener("keydown", arrowMove);
     document.querySelector('.dropdown-btn').addEventListener('click', function() {
         document.querySelector('.dropdown-content').classList.toggle('show');
     });
-
+    
     setInterval(update, 1000/10);
     setInterval(spawnHazard, 1000/2);
-    setInterval(spawnLazer, 5000);
+    setInterval(toggleLazer, 5000);
     
     
 }
@@ -99,14 +106,18 @@ function update() {
     }
     context.fillStyle = "black";
     context.fillRect(0, 0, cols * blockSize, rows * blockSize);
-
+    
     context.fillStyle = "aquamarine";
     context.fillRect(heroX, heroY, blockSize, blockSize);
 
     context.fillStyle = "lime";
     context.fillRect(goalX, goalY, blockSize, blockSize);
-
-
+    
+    let lazer = new Lazer(5, 0);
+    lazerOn == true ? context.fillStyle = "yellow" : context.fillStyle = "black";
+    context.fillRect(lazer.x*blockSize, lazer.y, blockSize, blockSize);
+    context.fillRect(lazer.x*blockSize, lazer.y+(19*blockSize), blockSize, blockSize);
+    
     
     
     // update hazard movement
@@ -124,13 +135,13 @@ function update() {
             }
         }
     }
-
+    
     //check if reached goal
     if (goalX == heroX && goalY == heroY && spawnHazards == true) {
         score ++;
         setGoal();
     }
-
+    
     
     
     
@@ -158,59 +169,59 @@ function spawnHazard() {
             x = Math.floor(Math.random() * 13 + 3);
             direction = "down";
             break;
-        //right
-        case 2:
-            y = Math.floor(Math.random() * 13 + 3);
-            x = 19;
-            direction = "left";
-            break;
-        //bottom
-        case 3:
-            y = 19;
-            x = Math.floor(Math.random() * 13 + 3);
-            direction = "up";
-            break;
+            //right
+            case 2:
+                y = Math.floor(Math.random() * 13 + 3);
+                x = 19;
+                direction = "left";
+                break;
+                //bottom
+                case 3:
+                    y = 19;
+                    x = Math.floor(Math.random() * 13 + 3);
+                    direction = "up";
+                    break;
         //left
         case 4:
             y = Math.floor(Math.random() * 13 + 3);
             x = 0;
             direction = "right";
             break;
-    }
-
-    let hazard = new Hazard(x*blockSize, y*blockSize, direction);
-    hazards.push(hazard);
-    if(hazards.length > 8) {
-        hazards.splice(0,1);
-    }
-    console.log(hazards.length);
-}
-
-function arrowMove(e) {
-    
-    
-    if(["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "w", "s", "a", "d"].includes(e.key)) {
-        e.preventDefault();
-    }
-    if(spawnHazards == true) {
+        }
         
-        if ((e.key == "ArrowUp" || e.key == "w") && heroY != 0) {
-            heroY -= 1 * blockSize;
+        let hazard = new Hazard(x*blockSize, y*blockSize, direction);
+        hazards.push(hazard);
+        if(hazards.length > 8) {
+            hazards.splice(0,1);
         }
-        else if ((e.key == "ArrowDown" || e.key == "s") && heroY != 19*blockSize) {
-            heroY += 1 * blockSize;
+        console.log(hazards.length);
+    }
+    
+    function arrowMove(e) {
+        
+        
+        if(["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "w", "s", "a", "d"].includes(e.key)) {
+            e.preventDefault();
         }
-        else if ((e.key == "ArrowLeft" || e.key == "a") && heroX != 0) {
-            heroX -= 1 * blockSize;
-        }
-        else if ((e.key == "ArrowRight" || e.key == "d") && heroX != 19*blockSize) {
-            heroX += 1 * blockSize;
+        if(spawnHazards == true) {
+            
+            if ((e.key == "ArrowUp" || e.key == "w") && heroY != 0) {
+                heroY -= 1 * blockSize;
+            }
+            else if ((e.key == "ArrowDown" || e.key == "s") && heroY != 19*blockSize) {
+                heroY += 1 * blockSize;
+            }
+            else if ((e.key == "ArrowLeft" || e.key == "a") && heroX != 0) {
+                heroX -= 1 * blockSize;
+            }
+            else if ((e.key == "ArrowRight" || e.key == "d") && heroX != 19*blockSize) {
+                heroX += 1 * blockSize;
+            }
         }
     }
-}
-
-function move(direction) {
-    if (direction == "up" && heroY != 0) {
+    
+    function move(direction) {
+        if (direction == "up" && heroY != 0) {
         heroY -= 1 * blockSize;
     }
     else if (direction == "down" && heroY != 19*blockSize) {
@@ -237,7 +248,7 @@ function toggleMenu() {
     } else {
         document.getElementById('menu').style.display = "none";
         console.log("closed");
-
+        
     }
 }
 
@@ -253,10 +264,23 @@ function toggleLazer() {
     lazerOn = !lazerOn;
 }
 function spawnLazer() {
-    toggleLazer();
     let lazer = new Lazer(5, 0);
-    lazerOn == false ? context.fillStyle = "yellow" : context.fillStyle = "black";
+    lazerOn == true ? context.fillStyle = "yellow" : context.fillStyle = "black";
     context.fillRect(lazer.x*blockSize, lazer.y, blockSize, blockSize);
     context.fillRect(lazer.x*blockSize, lazer.y+(19*blockSize), blockSize, blockSize);
+    
+}
 
+function create() {
+    username = document.getElementById('login-username').value;
+    password = document.getElementById('login-password').value;
+    
+    if (username == dummyUsername | password == dummyPassword) {
+        //show error message
+    } else {
+        localStorage.setItem('username', username);
+
+        window.location.href = "heroes.html";
+        //let them in
+    }
 }
