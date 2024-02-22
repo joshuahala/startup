@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="play.js"></script>
+    <script src="login.js"></script>
     <title>Bit Hero</title>
 </head>
 <body>
@@ -14,6 +14,8 @@
         <input type="text" id="login-username">
         <p>Password</p>
         <input type="text" id="login-password">
+        <p class="error" id="errorUnoriginal">Username or password already taken</p>
+        <p class="error" id="errorIncorrect">Incorrect username or password</p>
         <div id="buttons">
             <button id="create" onclick="create()">Create</button>
             <button id="login"><a href="heroes.html">Login</a></button>
@@ -26,9 +28,21 @@
     body {
         display: flex;
         align-items: center;
+        font-size: 1.5em;
+    }
+    input[type="text"] {
+        font-size: 1.2em; /* Adjust this value as needed */
+    }
+    button {
         font-size: 1em;
     }
-    
+
+    .error {
+        color: rgb(255, 67, 67);
+        display: none;
+    }
+
+
     
     
 </style>

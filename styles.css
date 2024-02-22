@@ -134,6 +134,7 @@ button {
 button:hover {
     transform: scale(1.1); /* Makes the card grow in size */
     transition: transform 0.2s ease-in-out; /* Smooth transition */
+    color: lime;
 }
 
 a:hover {

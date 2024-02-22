@@ -1,8 +1,5 @@
 
-let username;
-let password;
-let dummyUsername = "me";
-let dummyPassword = "pass";
+
 
 var showMenu = false;
 var screenWidth = window.innerWidth;
@@ -271,16 +268,4 @@ function spawnLazer() {
     
 }
 
-function create() {
-    username = document.getElementById('login-username').value;
-    password = document.getElementById('login-password').value;
-    
-    if (username == dummyUsername | password == dummyPassword) {
-        //show error message
-    } else {
-        localStorage.setItem('username', username);
 
-        window.location.href = "heroes.html";
-        //let them in
-    }
-}
