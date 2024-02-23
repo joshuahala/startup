@@ -1,4 +1,22 @@
+let usersHeroes = [];
+let localHeroes = localStorage.getItem('usersHeroes');
+if (localHeroes) {
+    usersHeroes = JSON.parse(localHeroes);
+}
 
+
+window.onload = function() {
+    if (usersHeroes.length < 1) beginner();
+    var username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById('username').textContent = username;
+    } else {
+        for (let hero of usersHeroes) {
+            addHero(hero);
+        }
+    }
+
+}
 class Hero {
     constructor(name, color, level){
         this.name = name;
@@ -8,20 +26,20 @@ class Hero {
 
     url(color) {
         switch(color) {
-            case "blue":
-                return 'assets/images/blue-only.png';
-                
-            case "red":
+            case 1:
                 return 'assets/images/red-only.png';
+            case 2:
+                return 'assets/images/green-only2.png';
+            case 3:
+                return 'assets/images/blue-only.png';
                 
         }
     }
 }
 
-blueHero = new Hero("freeze", "blue", 1);
+blueHero = new Hero("freeze", 1, 1);
 
 function addHero(heroObj) {
-    alert("sdfsf")
     let heroes = document.getElementById('heroes-container');
 
     let heroEl = document.createElement('div');//create new hero div
@@ -49,5 +67,24 @@ function addHero(heroObj) {
 }
 
 function clickAdd() {
-    addHero(blueHero);
+    
+    randomHero();
+}
+
+function randomHero() {
+    let newRandom = Math.round(Math.random()*2) + 1;
+    let newHero = new Hero("name", newRandom, 1);
+    addHero(newHero);
+    usersHeroes.push(newHero);
+    localStorage.setItem('usersHeroes', JSON.stringify(usersHeroes));}
+
+function beginner() {
+    document.getElementById('message').style.display = "block";
+    
+}
+
+function awesomeBtn() {
+    document.getElementById('message').style.display = "none";
+    randomHero();
+    
 }

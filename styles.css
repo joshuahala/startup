@@ -96,6 +96,7 @@ button {
     border: 1px solid grey;
     padding: 6px 12px;
     margin: 5px;
+    font-size: 1em;
 }
 
 .card-bottom {
@@ -124,6 +125,22 @@ button {
 .hero-card:hover {
     transform: scale(1.1); /* Makes the card grow in size */
     transition: transform 0.2s ease-in-out; /* Smooth transition */
+}
+
+#message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    background-color: var(--secondary-color);
+    border: 2px solid grey;
+    padding: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 2em;
+    display: none;
 }
 
 .player-name {
