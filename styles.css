@@ -179,7 +179,7 @@ a:hover {
 
 
 #canvas {
-    margin-top: 30px;
+    
     
     
     
@@ -236,6 +236,20 @@ footer {
 
     .login-card {
         width: 80%;
+    }
+
+    .message {
+        font-size: 1.5em;
+        width: 80%;
+    }
+
+    #player-notifications {
+        max-height: 50px;
+        overflow: hidden;
+    }
+
+    #start-text {
+        transform: translate(0%, -50%);
     }
 }
 
