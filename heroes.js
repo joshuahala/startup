@@ -2,14 +2,17 @@ let usersHeroes = [];
 let localHeroes = localStorage.getItem('usersHeroes');
 if (localHeroes) {
     usersHeroes = JSON.parse(localHeroes);
+    console.log(usersHeroes)
 }
 
 
 window.onload = function() {
-    if (usersHeroes.length < 1) beginner();
     var username = localStorage.getItem('username');
     if (username) {
         document.getElementById('username').textContent = username;
+    }
+    if (usersHeroes.length < 1) {
+        beginner();
     } else {
         for (let hero of usersHeroes) {
             addHero(hero);
@@ -18,20 +21,24 @@ window.onload = function() {
 
 }
 class Hero {
-    constructor(name, color, level){
+    constructor(name, color, level, url = null){
         this.name = name;
         this.color = color;
         this.level = level;
+        this.url = url;
     }
 
-    url(color) {
+    setURL(color) {
         switch(color) {
             case 1:
-                return 'assets/images/red-only.png';
+                this.url = 'assets/images/red-only.png';
+                break;
             case 2:
-                return 'assets/images/green-only2.png';
+                this.url = 'assets/images/green-only2.png';
+                break;
             case 3:
-                return 'assets/images/blue-only.png';
+                this.url = 'assets/images/blue-only.png';
+                break;
                 
         }
     }
@@ -63,7 +70,7 @@ function addHero(heroObj) {
     heroes.appendChild(heroEl);// add hero card to the heroes container
 
     //add the image to the hero background
-    heroEl.style.backgroundImage = `url(${heroObj.url(heroObj.color)}`;
+    heroEl.style.backgroundImage = `url("${heroObj.url}")`;
 }
 
 function clickAdd() {
@@ -74,6 +81,7 @@ function clickAdd() {
 function randomHero() {
     let newRandom = Math.round(Math.random()*2) + 1;
     let newHero = new Hero("name", newRandom, 1);
+    newHero.setURL(newHero.color)
     addHero(newHero);
     usersHeroes.push(newHero);
     localStorage.setItem('usersHeroes', JSON.stringify(usersHeroes));}

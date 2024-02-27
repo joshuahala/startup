@@ -72,9 +72,13 @@
                 </div>
             </div>
         </div>
-        <div id="quote">
+        <div class="message" class="quote" id="realQuote">
             <p>“Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway.”</p>
             <p>-Earl Nightingale</p>
+            <button onclick="hideQuote()">Awesome</button>
+        </div>
+        <div  class="quote">
+            
         </div>
     </main>
     <footer>
@@ -120,9 +124,9 @@
     }
    
 
-    #quote {
+    .quote {
         flex: 1;
-        display: flex;
+        display: block;
         flex-direction: column;
         align-items: center;
     }

@@ -1,5 +1,13 @@
 
+class Message {
+    constructor(user, message) {
+        this.user = user;
+        this.message = message;
+    }
+}
 
+
+let messages = [];
 
 var showMenu = false;
 var screenWidth = window.innerWidth;
@@ -37,7 +45,7 @@ class Hazard {
     }
 
 
-
+    
     move() {
         if(this.dir == "up") {
             this.hy -=1 * (blockSize/2);
@@ -92,7 +100,10 @@ window.onload = function () {
     
     setInterval(update, 1000/10);
     setInterval(spawnHazard, 1000/2);
-    setInterval(toggleLazer, 5000);
+    //setInterval(toggleLazer, 5000);
+
+    let randomInterval = Math.floor(Math.random() * 5 + 4);
+    setInterval(newMessage, randomInterval*1000);
     
     
 }
@@ -126,6 +137,7 @@ function update() {
         if(heroX == hazard.hx && heroY == hazard.hy) {
             spawnHazards = false;
             document.getElementById('start-text').style.display = "block";
+            showQuote();
             if (score > topScore) {
                 topScore = score;
                 document.getElementById('top-score').textContent = topScore;
@@ -268,4 +280,79 @@ function spawnLazer() {
     
 }
 
+
+
+function newMessage() {
+    let messageBoard = document.getElementById('player-notifications');
+
+    let userNumber = Math.round(Math.random()*3 + 1);
+    let messageNumber = Math.round(Math.random()*3 + 1);
+    let usertxt = chooseMessage(userNumber, messageNumber)[0];
+    let messagetxt = chooseMessage(userNumber, messageNumber)[1];
+
+    
+
+    let message = new Message(usertxt, messagetxt);
+    messages.push(message);
+
+    let userText = document.createElement('span');
+    userText.classList.add('player-name');
+    userText.textContent = message.user;
+
+    let messageText = document.createElement('span');
+    messageText.textContent = ` ${message.message}`;
+    let content = document.createElement('p');
+    content.appendChild(userText);
+    content.appendChild(messageText);
+    messageBoard.appendChild(content);
+
+    setTimeout(function() {
+        content.remove();
+    }, 6000)
+}
+
+function chooseMessage(userNum, messageNum) {
+    let usertext;
+    let messagetxt;
+    switch(userNum) {
+        case 1:
+            usertext = "Jared";
+            break;
+        case 2:
+            usertext = "Alexander";
+            break;
+        case 3:
+            usertext = "Clu";
+            break;
+        case 4:
+            usertext = "Hal";
+            break;    
+    }
+
+    switch(messageNum) {
+        case 1:
+            messagetxt = "Started a new game";
+            break;
+        case 2:
+            messagetxt = "got a new highscore";
+            break;
+        case 3:
+            messagetxt = "leveled up";
+            break;
+        case 4:
+            messagetxt = "leveled up";
+            break;
+    }
+    return [usertext, messagetxt]; // Correctly return both values in an array
+}
+
+function showQuote() {
+    let quote = document.getElementById('realQuote');
+    quote.style.display = "block";
+}
+
+function hideQuote() {
+    let quote = document.getElementById('realQuote');
+    quote.style.display = "none";
+}
 
