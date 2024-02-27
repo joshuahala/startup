@@ -97,6 +97,9 @@ window.onload = function () {
     document.querySelector('.dropdown-btn').addEventListener('click', function() {
         document.querySelector('.dropdown-content').classList.toggle('show');
     });
+
+    newMessage();
+    newMessage();
     
     setInterval(update, 1000/10);
     setInterval(spawnHazard, 1000/2);
@@ -308,7 +311,7 @@ function newMessage() {
 
     setTimeout(function() {
         content.remove();
-    }, 6000)
+    }, 7000)
 }
 
 function chooseMessage(userNum, messageNum) {

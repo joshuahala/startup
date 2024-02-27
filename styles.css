@@ -259,6 +259,10 @@ footer {
     .dropdown-btn {
         display: block;
     }
+
+    #player-notifications {
+        overflow: hidden;
+    }
 }
 
 
