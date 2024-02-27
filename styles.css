@@ -185,6 +185,10 @@ a:hover {
     
 }
 
+#table {
+    text-align: center;
+}
+
 .login-card {
     display: flex;
     flex-direction: column;

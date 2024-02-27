@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="play.js"></script>
+    <script src="scores.js"></script>
     <title>Bit Hero</title>
 </head>
 <body>
@@ -37,8 +37,8 @@
     <main>
         
         <h1>Top Scores</h1>
-        <table>
-            <tr>
+        <table id="table">
+            <tr id="headers">
                 <th>Username</th>
                 <th>High Score</th>
                 <th>Heroes</th>
@@ -120,6 +120,9 @@
         border: 2px solid black;
     }
     
+    #headers {
+        background-color: rgba(142, 142, 147, 0.344);
+    }
     
    
 
