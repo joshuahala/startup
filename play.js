@@ -144,6 +144,7 @@ function update() {
             if (score > topScore) {
                 topScore = score;
                 document.getElementById('top-score').textContent = topScore;
+                recordScoreInfo();
             }
         }
     }
@@ -359,3 +360,28 @@ function hideQuote() {
     quote.style.display = "none";
 }
 
+function recordScoreInfo() {
+    var username = localStorage.getItem('username');
+    let heroesListString = localStorage.getItem("usersHeroes");
+    let heroesList = JSON.parse(heroesListString);
+    let numHeroes = heroesList.length; 
+    let topLevel = 1;
+    for (let hero of heroesList) {
+        if (hero.level > topLevel) {
+            topLevel = hero.level;
+        }
+    }
+
+    let scoreInfo = [
+        username,
+        topScore,
+        numHeroes,
+        topLevel
+    ];
+
+    let tableData = JSON.parse(localStorage.getItem("tableData"));
+    if (!tableData) tableData=[];
+    tableData.push(scoreInfo);
+
+    localStorage.setItem("tableData", JSON.stringify(tableData));
+}    
