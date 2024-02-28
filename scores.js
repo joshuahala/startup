@@ -16,6 +16,10 @@ class RowData {
 
 
 window.onload = function() {
+    var username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById('username').textContent = username;
+    }
     tableData = JSON.parse(localStorage.getItem("tableData"));
     if (!tableData) tableData = [];
     displayTable(tableData);

@@ -5,6 +5,7 @@ if (localHeroes) {
     console.log(usersHeroes)
 }
 
+let win = false;
 
 window.onload = function() {
     var username = localStorage.getItem('username');
@@ -69,7 +70,7 @@ function chosen(heroObj) {
     heroes.appendChild(vs);
     heroes.appendChild(enemyEl);
 
-    setTimeout(result, 3000);
+    setTimeout(challenge, 3000);
 
 }
 
@@ -106,7 +107,44 @@ function result() {
 }
 
 function resultBtn() {
-    usersHeroes.push(Enemy);
-    localStorage.setItem("usersHeroes", JSON.stringify(usersHeroes));
+    if (win == true){
+        usersHeroes.push(Enemy);
+        localStorage.setItem("usersHeroes", JSON.stringify(usersHeroes));
+    }
     window.location.href = "heroes.html";
+}
+
+// to consider
+let yourLevel = 3;
+let theirLevel = 7;
+let modifier = (yourLevel - theirLevel)*4;
+
+
+function challenge() {
+    let chance = Math.round(Math.random()*99 + 1 + modifier);
+    console.log(chance);
+    
+    if (chance > 80) {
+        alert("win");
+        win = true;
+    } else if (chance < 20) {
+        gotAway()
+    } else {
+        gotAway()
+    
+    }
+
+    result();
+}
+
+
+function gotAway() {
+    let resultMessage = document.getElementById('result');
+    let title = document.getElementById('result-title');
+    let message = document.getElementById('result-message');
+    let btn = document.getElementById('result-btn');
+    title.textContent = "He Got away";
+    message.textContent = "Better luck next time"
+    btn.textContent = "ok"
+
 }
