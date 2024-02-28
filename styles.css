@@ -276,6 +276,11 @@ footer {
         overflow: hidden;
     }
 
+    #challenge-notification {
+        position: absolute;
+        display: none;
+    }
+
     #start-text {
         transform: translate(0%, -50%);
     }
@@ -304,6 +309,10 @@ footer {
 
     #player-notifications {
         overflow: hidden;
+    }
+    #challenge-notification {
+        position: absolute;
+        display: none;
     }
 }
 
