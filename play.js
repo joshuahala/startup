@@ -29,7 +29,9 @@ var context;
 var heroX = 0;
 var heroY = 0;
 
-let color;
+let color="aquamarine";
+let hazardColor = "red";
+
 
 var goalX = 0 * blockSize;
 var goalY = 0 * blockSize;
@@ -141,7 +143,7 @@ function update() {
     
     // update hazard movement
     for(let hazard of hazards){
-        context.fillStyle = "red";
+        context.fillStyle = hazardColor;
         context.fillRect(hazard.hx, hazard.hy, blockSize, blockSize);
         hazard.move();
         //check for collision
@@ -398,6 +400,7 @@ function setColor(currentColor) {
     switch(currentColor) {
         case 1:
             color = "red";
+            hazardColor = "orange"
             break;
         case 2:
             color = "lime";

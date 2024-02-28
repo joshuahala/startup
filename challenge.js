@@ -124,7 +124,7 @@ function challenge() {
     let chance = Math.round(Math.random()*99 + 1 + modifier);
     console.log(chance);
     
-    if (chance > 80) {
+    if (chance > 60) {
         alert("win");
         win = true;
     } else if (chance < 20) {

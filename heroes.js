@@ -1,4 +1,5 @@
 let currentColor;
+let color;
 let usersHeroes = [];
 let localHeroes = localStorage.getItem('usersHeroes');
 if (localHeroes) {
@@ -53,6 +54,24 @@ function addHero(heroObj) {
 
     let heroEl = document.createElement('div');//create new hero div
     heroEl.classList.add('hero-card');// add hero class
+    heroEl.addEventListener('click', function(event) {
+        if(document.querySelector(".selected")){
+
+            document.querySelector(".selected").classList.remove("selected")
+        }
+        event.target.classList.add("selected");
+        setColor(heroObj.color);
+        localStorage.setItem("currentColor", JSON.stringify(heroObj.color));
+        localStorage.setItem("selectedHero", JSON.stringify(heroObj));
+    });
+    
+    let selectedHero = JSON.parse(localStorage.getItem("selectedHero"));
+    console.log(heroObj);
+    console.log(selectedHero);
+    if (selectedHero && heroObj.name == selectedHero.name) {
+        heroEl.classList.add("selected");
+    }
+
     cardBottom = document.createElement('div');// add bottom label
     cardBottom.classList.add('card-bottom');//add class to bottom label
     //add the level and train button to the card
@@ -89,10 +108,10 @@ function randomHero() {
     let newHero = new Hero("name", newRandom, 1);
     newHero.setURL(newHero.color)
     currentColor = newHero.color;
-    addHero(newHero);
     usersHeroes.push(newHero);
     localStorage.setItem('usersHeroes', JSON.stringify(usersHeroes));
     localStorage.setItem('currentColor', JSON.stringify(currentColor));
+    addHero(newHero);
 }
 
 function beginner() {
@@ -124,10 +143,25 @@ function saveName() {
     while (heroes.firstChild) {
         heroes.removeChild(heroes.firstChild);
     }
+    
 
     for (let hero of usersHeroes) {
         addHero(hero);
     }
     
 
+}
+
+function setColor(currentColor) {
+    switch(currentColor) {
+        case 1:
+            color = "red";
+            break;
+        case 2:
+            color = "lime";
+            break;
+        case 3:
+            color = "blue";
+            break;
+    }
 }
