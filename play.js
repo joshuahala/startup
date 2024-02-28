@@ -9,6 +9,8 @@ class Message {
 
 let messages = [];
 
+let loseStreak = 0;
+
 var showMenu = false;
 var screenWidth = window.innerWidth;
 var screenHeight = window.innerHeight;
@@ -159,6 +161,8 @@ function update() {
                 document.getElementById('top-score').textContent = topScore;
                 recordScoreInfo();
             }
+            loseStreak ++;
+            if (loseStreak == 3) weak();
         }
     }
     
@@ -413,4 +417,11 @@ function setColor(currentColor) {
             color = "blue";
             break;
     }
+}
+
+function weak() {
+    console.log("hit")
+    selectedHero = JSON.parse(localStorage.getItem("selectedHero"));
+    let isWeak = [true, selectedHero];
+    localStorage.setItem("weak", JSON.stringify(isWeak));
 }
