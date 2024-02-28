@@ -109,10 +109,16 @@ button {
     color: white;
     text-decoration: none;
     font-style: normal;
+    max-height: 25%;
+}
+#hero-name {
+    padding: 0px;
+    text-align: end;
 }
 .hero-card {
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
     width: 200px;
     height: 200px;
     background-color: var(--secondary-color);
@@ -125,6 +131,18 @@ button {
 .hero-card:hover {
     transform: scale(1.1); /* Makes the card grow in size */
     transition: transform 0.2s ease-in-out; /* Smooth transition */
+}
+
+#name-him {
+    flex-direction: column;
+    display: none;
+}
+
+.hero-name {
+    display: flex;
+    margin: 0px;
+    padding: 5px;
+
 }
 
 #message {
@@ -176,7 +194,12 @@ a:hover {
     
 }
 
+input[type="text"] {
+    font-size: 1.2em; /* Adjust this value as needed */
+    padding: 5px;
+    text-align: center;
 
+}
 
 #canvas {
     

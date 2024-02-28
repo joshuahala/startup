@@ -63,3 +63,15 @@ function randomMessage() {
         message.style.display = "block";
     }
 }
+
+// --------- Challenge notification -------------- 
+function closeMessage() {
+    let message = document.getElementById('challenge-notification');
+    message.style.display = "none";
+
+}
+
+function accept() {
+    window.location.href = "challenge.html";
+
+}

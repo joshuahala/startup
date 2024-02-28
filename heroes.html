@@ -32,6 +32,12 @@
             <button onclick="awesomeBtn()">Awesome!</button>
         </div>
 
+        <div class="message" id="name-him">
+            <h3>Name your new hero!</h3>
+            <input id="name-input" type="text">
+            <button onclick="saveName()">Save</button>
+        </div>
+
         <!-- Dropdown Content -->
         <div class="dropdown-content">
             <a href="heroes.html">My Heroes</a>
@@ -93,6 +99,20 @@
         display: flex;
         justify-content: center;
     }
+
+    #name-him {
+        flex-direction: column;
+        display: none;
+    }
+
+    .hero-name {
+        display: flex;
+        margin: 0px;
+        padding: 5px;
+
+    }
+
+    
 
     
     /* Hide dropdown content by default */

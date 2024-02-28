@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="play.js"></script>
+    <script src="challenge.js"></script>
     <title>Bit Hero</title>
 </head>
 <body>
@@ -37,23 +37,39 @@
     <main>
         
         <h2>CHALLENGE</h2>
-        <div id="heroes-container">
+        
+        <div id="choose-div">
+            <h4>Choose one of your heroes to challenge the other player</h4>
             
-            <div class="hero-card"  style="background-image: url('assets/images/red-only.png')">
+            <div id="choose-hero" class="heroes-container"></div>
+        </div>
+            
+
+
+        <div id="heroes-container">
+
+            
+            <!-- <div id="your-hero" class="hero-card"  style="background-image: url('assets/images/red-only.png')">
                 <div class="card-bottom">
                     <p>LVL 1</p>
                 </div>
             </div>
             <H2>VS</H2>
-            <div class="hero-card"  style="background-image: url('assets/images/green-only2.png')">
+            <div id="their-hero" class="hero-card"  style="background-image: url('assets/images/green-only2.png')">
                 <div class="card-bottom">
                     <p>LVL 1</p>
                 </div>
-            </div>
+            </div> -->
         </div>
-        <h2>You Won!</h2>
-        <p>you get to keep Aristotle's Hero!</p>
-        <button>Awesome!</button>
+
+        <h4 id="challenging">Challenging...</h4>
+
+        <div id="result">
+            <h2>You Won!</h2>
+            <p>you get to keep Aristotle's Hero!</p>
+            <button onclick="resultBtn()">Awesome!</button>
+        </div>
+
     </main>
     <footer>
         
@@ -75,10 +91,20 @@
     }
     
 
-   
+   #result {
+    display: none;
+   }
+   #challenging {
+    display: none;
+   }
 
 
     #heroes-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .heroes-container {
         display: flex;
         justify-content: center;
     }
