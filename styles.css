@@ -272,6 +272,7 @@ footer {
 
     #player-notifications {
         max-height: 50px;
+        min-height: 50px;
         overflow: hidden;
     }
 

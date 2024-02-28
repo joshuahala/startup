@@ -1,5 +1,6 @@
 let tableData = [];
 let tableRows = [];
+let showMenu = false;
 
 class RowData {
     constructor(username, topScore, heroCount, topLevel) {
@@ -16,6 +17,8 @@ class RowData {
 
 
 window.onload = function() {
+    document.querySelector('.dropdown-content').style.display = "none";
+
     var username = localStorage.getItem('username');
     if (username) {
         document.getElementById('username').textContent = username;
@@ -78,4 +81,17 @@ function closeMessage() {
 function accept() {
     window.location.href = "challenge.html";
 
+}
+
+function toggleMenu() {
+    showMenu = !showMenu;
+    console.log(showMenu);
+    if (showMenu == true) {
+        document.querySelector('.dropdown-content').style.display = "flex";
+        console.log("opened");
+    } else {
+        document.querySelector('.dropdown-content').style.display = "none";
+        console.log("closed");
+        
+    }
 }

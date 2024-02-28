@@ -1,3 +1,4 @@
+let currentColor;
 let usersHeroes = [];
 let localHeroes = localStorage.getItem('usersHeroes');
 if (localHeroes) {
@@ -87,9 +88,12 @@ function randomHero() {
     let newRandom = Math.round(Math.random()*2) + 1;
     let newHero = new Hero("name", newRandom, 1);
     newHero.setURL(newHero.color)
+    currentColor = newHero.color;
     addHero(newHero);
     usersHeroes.push(newHero);
-    localStorage.setItem('usersHeroes', JSON.stringify(usersHeroes));}
+    localStorage.setItem('usersHeroes', JSON.stringify(usersHeroes));
+    localStorage.setItem('currentColor', JSON.stringify(currentColor));
+}
 
 function beginner() {
     document.getElementById('message').style.display = "block";
@@ -112,6 +116,8 @@ function saveName() {
     
     localStorage.setItem("usersHeroes", JSON.stringify(usersHeroes));
     console.log("name", nameInput);
+    
+
     document.getElementById('name-him').style.display = "none";
 
     let heroes = document.getElementById('heroes-container');

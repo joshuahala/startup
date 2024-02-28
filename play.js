@@ -29,6 +29,8 @@ var context;
 var heroX = 0;
 var heroY = 0;
 
+let color;
+
 var goalX = 0 * blockSize;
 var goalY = 0 * blockSize;
 
@@ -70,6 +72,12 @@ class Lazer {
 }
 
 window.onload = function () {
+
+    document.querySelector('.dropdown-content').style.display = "none";
+
+    let currentColor = JSON.parse(localStorage.getItem("currentColor"));
+    setColor(currentColor);
+
     var username = localStorage.getItem('username');
     if (username) {
         document.getElementById('username').textContent = username;
@@ -118,10 +126,10 @@ function update() {
     context.fillStyle = "black";
     context.fillRect(0, 0, cols * blockSize, rows * blockSize);
     
-    context.fillStyle = "aquamarine";
+    context.fillStyle = color;
     context.fillRect(heroX, heroY, blockSize, blockSize);
 
-    context.fillStyle = "lime";
+    context.fillStyle = "white";
     context.fillRect(goalX, goalY, blockSize, blockSize);
     
     let lazer = new Lazer(5, 0);
@@ -256,10 +264,10 @@ function toggleMenu() {
     showMenu = !showMenu;
     console.log(showMenu);
     if (showMenu == true) {
-        document.getElementById('menu').style.display = "flex";
+        document.querySelector('.dropdown-content').style.display = "flex";
         console.log("opened");
     } else {
-        document.getElementById('menu').style.display = "none";
+        document.querySelector('.dropdown-content').style.display = "none";
         console.log("closed");
         
     }
@@ -385,3 +393,17 @@ function recordScoreInfo() {
 
     localStorage.setItem("tableData", JSON.stringify(tableData));
 }    
+
+function setColor(currentColor) {
+    switch(currentColor) {
+        case 1:
+            color = "red";
+            break;
+        case 2:
+            color = "lime";
+            break;
+        case 3:
+            color = "blue";
+            break;
+    }
+}
