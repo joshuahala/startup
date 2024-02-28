@@ -60,4 +60,26 @@ index.html is the login page. Press the login button to get to the other pages.
 +  done - 10% Application text content. I used the Pixelify Sans font for headers and buttons. Roboto light for regular text.
 +  done - 10% Application images. The images have borders and backgrouond colors. They also animate on hover. They also have dropshadows.
 
+# Javascript Deliverable
+### New Stuff
+The index login page lets you create a new username and password which are stored in localstorage for now.
+Upon creating an account you are given a character. You can use that character to play the game. You can name the character.
+Characters are stored in local storage.
+Scores are stored in local storage for now and are read into the scores table.
+On the scores page, you will recieve a notification that you can challenge another user's character. If you win the challenge you get a new character.
+### WebSocket
+The play.html page has a placeholder that represents notifications based on other players' interactions with the game. 
+The scores.html page simulates a challenge notification that tells you when another player's character is susceptible to attack. This is based on if the player recently lost a game.
+### Database
+Right now i use local storage to simulate database. I store player characters, scores, selected characters, usernames, passwords, etc. These will eventually become data in the database.
+
++ done - Prerequisite: Simon JavaScript deployed to your production environment
++ done -  Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
++ Prerequisite: Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review + the voter app as an example.
++ done -  Prerequisite: At least 10 git commits spread consistently throughout the assignment period.
++ done - Significant use of JavaScript to create a viable working application
++ done - 20% JavaScript support for future login.
++ done - 20% JavaScript support for future database data.
++ done - 20% JavaScript support for future WebSocket.
++ done - 40% JavaScript support for your application's interaction logic.
 
