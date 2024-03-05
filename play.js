@@ -156,6 +156,7 @@ function update() {
             spawnHazards = false;
             document.getElementById('start-text').style.display = "block";
             showQuote();
+            getQuote();
             if (score > topScore) {
                 topScore = score;
                 document.getElementById('top-score').textContent = topScore;
@@ -424,4 +425,14 @@ function weak() {
     selectedHero = JSON.parse(localStorage.getItem("selectedHero"));
     let isWeak = [true, selectedHero];
     localStorage.setItem("weak", JSON.stringify(isWeak));
+}
+
+function getQuote() {
+    const url = "https://api.quotable.io/random";
+    fetch(url)
+        .then((x) => x.json())
+        .then((response) => {
+            document.getElementById('quote').textContent = JSON.stringify(response.content);
+            document.getElementById('author').textContent = JSON.stringify(response.author);
+        });
 }
