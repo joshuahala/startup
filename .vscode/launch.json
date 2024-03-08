@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "node-terminal",
+            "name": "Run Script: startup",
+            "request": "launch",
+            "command": "npm run startup",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
