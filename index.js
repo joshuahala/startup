@@ -43,7 +43,7 @@ app.listen(port, function() {
 
 let loginInfo = {
   username: "sdf",
-  password: "sdf"
+  password: "fds"
 };
 
 function saveLoginInfo(username, password) {

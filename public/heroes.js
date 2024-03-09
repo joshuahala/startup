@@ -1,3 +1,7 @@
+let getUsername;
+let getPassword;
+
+
 let currentColor;
 let color;
 let usersHeroes = [];
@@ -9,6 +13,10 @@ if (localHeroes) {
 
 
 window.onload = function() {
+    
+    getLoginInfo();
+    
+
     let nameHim = document.getElementById('name-him');
     var username = localStorage.getItem('username');
     if (username) {
@@ -163,5 +171,21 @@ function setColor(currentColor) {
         case 3:
             color = "blue";
             break;
+    }
+}
+
+async function getLoginInfo() {
+    try {
+        const response = await fetch('/api/get_login_info');
+
+        if(!response.ok) {
+            console.log("error")
+        }
+
+        const data = await response.json();
+        document.getElementById('username').textContent = data.username;
+        
+    } catch(error) {
+        console.log(error);
     }
 }
