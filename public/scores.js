@@ -17,6 +17,10 @@ class RowData {
 
 
 window.onload = function() {
+
+    getLoginInfo();
+        
+
     document.querySelector('.dropdown-content').style.display = "none";
 
     var username = localStorage.getItem('username');
@@ -94,4 +98,15 @@ function toggleMenu() {
         console.log("closed");
         
     }
+}
+
+function getLoginInfo() {
+    fetch('/api/get_login_info')
+        .then((response) => response.json())
+        .then((data) => {
+            let loginInfo = data;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
