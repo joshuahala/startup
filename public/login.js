@@ -6,6 +6,10 @@ let dummyPassword = "pass";
 let getUsername;
 let getPassword;
 
+window.onload = function() {
+    getLoginInfo();
+
+}
 
 function create() {
     usernameInput = document.getElementById('login-username').value;
@@ -26,8 +30,7 @@ function create() {
     }
 }
 
-function login() {
-    getLoginInfo();
+async function login() {
     
     // check if user input matches login info stored on server
     usernameInput = document.getElementById('login-username').value;
@@ -56,14 +59,14 @@ async function saveLoginInfo(username, password) {
 }
 
 // get user login info
-function getLoginInfo() {
+async function getLoginInfo() {
     fetch('/api/get_login_info')
         .then((response) => response.json())
         .then((data) => {
             loginInfo = data;
             getUsername = loginInfo.username;
             getPassword = loginInfo.password;
-            
+            return 1;
         })
         .catch((error) => {
             console.error('Error:', error);
