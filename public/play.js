@@ -82,8 +82,8 @@ window.onload = function () {
 
     document.querySelector('.dropdown-content').style.display = "none";
 
-    let currentColor = JSON.parse(localStorage.getItem("currentColor"));
-    setColor(currentColor);
+    //let currentColor = JSON.parse(localStorage.getItem("currentColor"));
+    setColor();
 
     var username = localStorage.getItem('username');
     if (username) {
@@ -266,9 +266,9 @@ function spawnHazard() {
     }
 }
 
-document.querySelector('.dropdown-btn').addEventListener('click', function() {
-    document.querySelector('.dropdown-content').classList.toggle('show');
-});
+// document.querySelector('.dropdown-btn').addEventListener('click', function() {
+//     document.querySelector('.dropdown-content').classList.toggle('show');
+// });
 
 function toggleMenu() {
     showMenu = !showMenu;
@@ -405,7 +405,12 @@ function recordScoreInfo() {
     localStorage.setItem("topScore", JSON.stringify(topScore));
 }    
 
-function setColor(currentColor) {
+async function setColor() {
+    const response = await fetch('/api/get_current_color');
+    const data = await response.json();
+    let currentColor = data.setColor;
+
+
     switch(currentColor) {
         case 1:
             color = "red";

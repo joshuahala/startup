@@ -31,10 +31,45 @@ apiRouter.get('/get_login_info', (req, res) => {
   res.send(JSON.stringify(loginInfo));
 })
 
+
+apiRouter.get('/get_heroes', (req, res) => {
+  if(heroesList) {
+    res.send(JSON.stringify(heroesList));
+  } else {
+    res.send(JSON.stringify("nope"));
+  }
+})
+
+apiRouter.get('/get_current_color', (req, res) => {
+  let col = currentColor
+  res.send(JSON.stringify(col));
+  
+})
+
+apiRouter.get('/get_selected_hero', (req, res) => {
+  
+  res.send(JSON.stringify(selectedHero));
+  
+})
+
 apiRouter.post('/login_info', (req, res) => {
   saveLoginInfo(req.body.username, req.body.password);
   res.send({message: "saving login"})
 });
+
+apiRouter.post('/save_heroes', (req, res) => {
+  saveHeroes(req.body);
+})
+
+apiRouter.post('/save_current_color', (req, res) => {
+  const data = req.body;
+  saveColor(data);
+})
+
+apiRouter.post('/save_selected_hero', (req, res) => {
+  const data = req.body;
+  saveSelectedHero(data);
+})
 
 const port = 8080;
 app.listen(port, function() {
@@ -50,5 +85,20 @@ function saveLoginInfo(username, password) {
   loginInfo.username = username;
   loginInfo.password = password;
   console.log("saved");
+}
+
+let heroesList;
+function saveHeroes(object) {
+  heroesList = object;
+}
+
+let currentColor = 1;
+function saveColor(color) {
+  currentColor = color;
+}
+
+let selectedHero;
+function saveSelectedHero(hero) {
+  selectedHero = hero;
 }
 

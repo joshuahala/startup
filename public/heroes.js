@@ -1,34 +1,36 @@
-let getUsername;
-let getPassword;
+
 
 
 let currentColor;
 let color;
 let usersHeroes = [];
-let localHeroes = localStorage.getItem('usersHeroes');
-if (localHeroes) {
-    usersHeroes = JSON.parse(localHeroes);
-    console.log(usersHeroes)
-}
+let selectedHero;
+//let localHeroes = localStorage.getItem('usersHeroes');
+// if (localHeroes) {
+//     usersHeroes = JSON.parse(localHeroes);
+// }
 
 
 window.onload = function() {
-    
+
     getLoginInfo();
+
+    displayHeroes();
+
+
     
 
-    let nameHim = document.getElementById('name-him');
-    var username = localStorage.getItem('username');
-    if (username) {
-        document.getElementById('username').textContent = username;
-    }
-    if (usersHeroes.length < 1) {
-        beginner();
-    } else {
-        for (let hero of usersHeroes) {
-            addHero(hero);
-        }
-    }
+    // var username = localStorage.getItem('username');
+    // if (username) {
+    //     document.getElementById('username').textContent = username;
+    // }
+    // if (usersHeroes.length < 1) {
+    //     beginner();
+    // } else {
+    //     for (let hero of usersHeroes) {
+    //         addHero(hero);
+    //     }
+    // }
 
 }
 class Hero {
@@ -69,13 +71,15 @@ function addHero(heroObj) {
         }
         event.target.classList.add("selected");
         setColor(heroObj.color);
-        localStorage.setItem("currentColor", JSON.stringify(heroObj.color));
-        localStorage.setItem("selectedHero", JSON.stringify(heroObj));
+        //localStorage.setItem("currentColor", JSON.stringify(heroObj.color));
+        //localStorage.setItem("selectedHero", JSON.stringify(heroObj));
+        postCurrentColor(heroObj.color);
+        postSelectedHero(heroObj);
+
     });
     
-    let selectedHero = JSON.parse(localStorage.getItem("selectedHero"));
-    console.log(heroObj);
-    console.log(selectedHero);
+    let selectedHero = getSelectedHero();
+
     if (selectedHero && heroObj.name == selectedHero.name) {
         heroEl.classList.add("selected");
     }
@@ -117,8 +121,11 @@ function randomHero() {
     newHero.setURL(newHero.color)
     currentColor = newHero.color;
     usersHeroes.push(newHero);
-    localStorage.setItem('usersHeroes', JSON.stringify(usersHeroes));
-    localStorage.setItem('currentColor', JSON.stringify(currentColor));
+    //localStorage.setItem('usersHeroes', JSON.stringify(usersHeroes));
+    //localStorage.setItem('currentColor', JSON.stringify(currentColor));
+    postCurrentColor(currentColor);
+    postHeroes(usersHeroes);
+
     addHero(newHero);
 }
 
@@ -141,8 +148,8 @@ function saveName() {
         hero.name = nameInput;
     }
     
-    localStorage.setItem("usersHeroes", JSON.stringify(usersHeroes));
-    console.log("name", nameInput);
+    //localStorage.setItem("usersHeroes", JSON.stringify(usersHeroes));
+    postHeroes(usersHeroes);
     
 
     document.getElementById('name-him').style.display = "none";
@@ -188,4 +195,72 @@ async function getLoginInfo() {
     } catch(error) {
         console.log(error);
     }
+}
+async function getSelectedHero() {
+    try {
+        const response = await fetch('/api/get_selected_hero');
+
+        if(!response.ok) {
+            console.log("error")
+        }
+
+        const data = await response.json();
+        selectedHero = await data;
+        return selectedHero;
+        
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+async function displayHeroes() {
+    try {
+        const response = await fetch('/api/get_heroes');
+        const data = await response.json();
+        console.log(data)
+
+        
+        
+
+        if (data == "nope") {
+            beginner();
+        } else {
+            let heroes = data;
+            for (let hero of heroes) {
+                addHero(hero);
+            }
+        }
+    } catch(error) {
+        console.log("error with heroes", error);
+    }
+}
+
+async function postHeroes(heroes) {
+    const response = await fetch('/api/save_heroes', {
+        method: 'Post',
+        body: JSON.stringify(heroes),
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+    });
+}
+
+async function postCurrentColor(color) {
+    let data = {
+        setColor: color
+    }
+    const response = await fetch('/api/save_current_color', {
+        method: 'Post',
+        body: JSON.stringify(data),
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+    });
+}
+
+async function postSelectedHero(hero) {
+    let data = {
+        selectedHero: hero
+    }
+    const response = await fetch('/api/save_selected_hero', {
+        method: 'Post',
+        body: JSON.stringify(data),
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+    });
 }
