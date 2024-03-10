@@ -78,6 +78,7 @@ class Lazer {
 window.onload = function () {
     let localTopScore = JSON.parse(localStorage.getItem("topScore"));
     if (localTopScore) topScore = localTopScore;
+    getTopScore();
     document.getElementById('top-score').textContent = topScore;
 
     document.querySelector('.dropdown-content').style.display = "none";
@@ -160,6 +161,7 @@ function update() {
             if (score > topScore) {
                 topScore = score;
                 document.getElementById('top-score').textContent = topScore;
+                saveTopScore(topScore)
                 recordScoreInfo();
             }
             loseStreak ++;
@@ -432,6 +434,14 @@ function weak() {
     localStorage.setItem("weak", JSON.stringify(isWeak));
 }
 
+async function saveTopScore(score) {
+    fetch('/api/save_topScore', {
+        method: 'Post',
+        body: JSON.stringify(score),
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+    })
+}
+
 function getQuote() {
     const url = "https://api.quotable.io/random";
     fetch(url)
@@ -440,4 +450,15 @@ function getQuote() {
             document.getElementById('quote').textContent = JSON.stringify(response.content);
             document.getElementById('author').textContent = JSON.stringify(response.author);
         });
+}
+
+function getTopScore() {
+    fetch('api/get_topScore')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            topScore = data;
+            document.getElementById('top-score').textContent = topScore;
+
+        })
 }

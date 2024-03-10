@@ -34,7 +34,10 @@ apiRouter.get('/get_login_info', (req, res) => {
 
 apiRouter.get('/get_heroes', (req, res) => {
   if(heroesList) {
-    res.send(JSON.stringify(heroesList));
+    res.send({
+      heroes: heroesList,
+      selectedHero: selectedHero  
+    });
   } else {
     res.send(JSON.stringify("nope"));
   }
@@ -49,6 +52,12 @@ apiRouter.get('/get_current_color', (req, res) => {
 apiRouter.get('/get_selected_hero', (req, res) => {
   
   res.send(JSON.stringify(selectedHero));
+  
+})
+
+apiRouter.get('/get_topScore', (req, res) => {
+  
+  res.send(JSON.stringify(topScore));
   
 })
 
@@ -68,7 +77,14 @@ apiRouter.post('/save_current_color', (req, res) => {
 
 apiRouter.post('/save_selected_hero', (req, res) => {
   const data = req.body;
+  res.send("got it");
   saveSelectedHero(data);
+})
+
+apiRouter.post('/save_topScore', (req, res) => {
+  const data = req.body;
+  res.send("got it");
+  saveTopScore(data);
 })
 
 const port = 8080;
@@ -100,5 +116,10 @@ function saveColor(color) {
 let selectedHero;
 function saveSelectedHero(hero) {
   selectedHero = hero;
+}
+
+let topScore = "02";
+function saveSelectedHero(score) {
+  topScore = score;
 }
 
