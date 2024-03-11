@@ -435,9 +435,12 @@ function weak() {
 }
 
 async function saveTopScore(score) {
+    let data = {
+        newTopScore: score
+    }
     fetch('/api/save_topScore', {
         method: 'Post',
-        body: JSON.stringify(score),
+        body: JSON.stringify(data),
         headers: {'Content-type': 'application/json; charset=UTF-8'}
     })
 }

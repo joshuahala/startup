@@ -83,8 +83,9 @@ apiRouter.post('/save_selected_hero', (req, res) => {
 
 apiRouter.post('/save_topScore', (req, res) => {
   const data = req.body;
+  const score = data.newTopScore;
   res.send("got it");
-  saveTopScore(data);
+  saveTopScore(score);
 })
 
 const port = 8080;
@@ -118,8 +119,9 @@ function saveSelectedHero(hero) {
   selectedHero = hero;
 }
 
-let topScore = "02";
-function saveSelectedHero(score) {
+let topScore = "0";
+function saveTopScore(score) {
   topScore = score;
+  console.log("saved score")
 }
 
