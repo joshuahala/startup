@@ -11,6 +11,8 @@ let messages = [];
 
 let loseStreak = 0;
 
+let heroesList;
+
 var showMenu = false;
 var screenWidth = window.innerWidth;
 var screenHeight = window.innerHeight;
@@ -76,6 +78,8 @@ class Lazer {
 }
 
 window.onload = function () {
+
+    getHeroes();
     let localTopScore = JSON.parse(localStorage.getItem("topScore"));
     if (localTopScore) topScore = localTopScore;
     getTopScore();
@@ -162,6 +166,8 @@ function update() {
                 topScore = score;
                 document.getElementById('top-score').textContent = topScore;
                 saveTopScore(topScore)
+                
+
                 recordScoreInfo();
             }
             loseStreak ++;
@@ -381,9 +387,9 @@ function hideQuote() {
 }
 
 function recordScoreInfo() {
-    var username = localStorage.getItem('username');
-    let heroesListString = localStorage.getItem("usersHeroes");
-    let heroesList = JSON.parse(heroesListString);
+    // var username = localStorage.getItem('username');
+    // let heroesListString = localStorage.getItem("usersHeroes");
+    // let heroesList = JSON.parse(heroesListString);
     let numHeroes = heroesList.length; 
     let topLevel = 1;
     for (let hero of heroesList) {
@@ -405,6 +411,7 @@ function recordScoreInfo() {
 
     localStorage.setItem("tableData", JSON.stringify(tableData));
     localStorage.setItem("topScore", JSON.stringify(topScore));
+    saveScoreInfo(tableData);
 }    
 
 async function setColor() {
@@ -444,6 +451,17 @@ async function saveTopScore(score) {
         headers: {'Content-type': 'application/json; charset=UTF-8'}
     })
 }
+async function saveScoreInfo(scoreInfo) {
+    console.log("loggins")
+    let data = {
+        body: scoreInfo
+    }
+    fetch('/api/save_scoreInfo', {
+        method: 'Post',
+        body: JSON.stringify(data),
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+    })
+}
 
 function getQuote() {
     const url = "https://api.quotable.io/random";
@@ -465,3 +483,24 @@ function getTopScore() {
 
         })
 }
+
+function getHeroes() {
+    fetch('/api/get_heroes')
+        .then(response => response.json())
+        .then(data => {
+            
+            let selectedHero;
+            if(data=="nope") {
+                heroesList = data;
+            } else {
+                heroesList = data.heroes;
+                selectedHero = data.selectedHero;
+            }
+
+        })
+        .catch(error => {
+            console.log("get heroes error", error);
+        });
+}
+
+getHeroes();

@@ -88,6 +88,13 @@ apiRouter.post('/save_topScore', (req, res) => {
   saveTopScore(score);
 })
 
+apiRouter.post('/save_scoreInfo', (req, res) => {
+  const data = req.body;
+  const scoreInfo = data.scoreInfo;
+  res.send("got it");
+  saveScoreInfo(scoreInfo);
+})
+
 const port = 8080;
 app.listen(port, function() {
     console.log(`Listening on port ${port}`)
@@ -122,6 +129,12 @@ function saveSelectedHero(hero) {
 let topScore = "0";
 function saveTopScore(score) {
   topScore = score;
+  console.log("saved score")
+}
+
+let scoreData = [];
+function saveScoreInfo(scoreInfo) {
+  scoreData.push(scoreInfo);
   console.log("saved score")
 }
 
