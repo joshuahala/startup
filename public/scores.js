@@ -2,6 +2,7 @@ let tableData = [];
 let tableRows = [];
 let showMenu = false;
 
+
 class RowData {
     constructor(username, topScore, heroCount, topLevel) {
         this.username = username;
@@ -17,18 +18,22 @@ class RowData {
 
 
 window.onload = function() {
+    document.querySelector('.dropdown-content').style.display = "none";
+    //var username = localStorage.getItem('username');
+    // if (username) {
+    //     document.getElementById('username').textContent = username;
+    // }
+    // tableData = JSON.parse(localStorage.getItem("tableData"));
+    // if (!tableData) tableData = [];
 
     getLoginInfo();
+    
+    
         
 
-    document.querySelector('.dropdown-content').style.display = "none";
 
-    var username = localStorage.getItem('username');
-    if (username) {
-        document.getElementById('username').textContent = username;
-    }
-    tableData = JSON.parse(localStorage.getItem("tableData"));
-    if (!tableData) tableData = [];
+
+
     displayTable(tableData);
 
     setInterval(randomMessage, 3000);
@@ -105,8 +110,22 @@ function getLoginInfo() {
         .then((response) => response.json())
         .then((data) => {
             let loginInfo = data;
+            let username = loginInfo.username;
+            document.getElementById('username').textContent = username;
         })
         .catch((error) => {
             console.error('Error:', error);
         });
 }
+
+getLoginInfo();
+
+function getScoreData() {
+    fetch('/api/get_scoreData')
+        .then(response => response.json())
+        .then(data => {
+            tableData = data;
+        })
+}
+getScoreData();
+

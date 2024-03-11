@@ -5,7 +5,7 @@ class Message {
         this.message = message;
     }
 }
-
+let username;
 
 let messages = [];
 
@@ -90,7 +90,7 @@ window.onload = function () {
     //let currentColor = JSON.parse(localStorage.getItem("currentColor"));
     setColor();
 
-    var username = localStorage.getItem('username');
+    //var username = localStorage.getItem('username');
     if (username) {
         document.getElementById('username').textContent = username;
     }
@@ -483,6 +483,20 @@ function getTopScore() {
 
         })
 }
+
+function getLoginInfo() {
+    fetch('/api/get_login_info')
+        .then((response) => response.json())
+        .then((data) => {
+            let loginInfo = data;
+            username = loginInfo.username;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+getLoginInfo()
 
 function getHeroes() {
     fetch('/api/get_heroes')

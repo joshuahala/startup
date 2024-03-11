@@ -61,6 +61,10 @@ apiRouter.get('/get_topScore', (req, res) => {
   
 })
 
+apiRouter.get('/get_scoreData', (req, res) => {
+  res.send(JSON.stringify(scoreData));
+})
+
 apiRouter.post('/login_info', (req, res) => {
   saveLoginInfo(req.body.username, req.body.password);
   res.send({message: "saving login"})
@@ -90,7 +94,7 @@ apiRouter.post('/save_topScore', (req, res) => {
 
 apiRouter.post('/save_scoreInfo', (req, res) => {
   const data = req.body;
-  const scoreInfo = data.scoreInfo;
+  const scoreInfo = data.body;
   res.send("got it");
   saveScoreInfo(scoreInfo);
 })
@@ -134,7 +138,7 @@ function saveTopScore(score) {
 
 let scoreData = [];
 function saveScoreInfo(scoreInfo) {
-  scoreData.push(scoreInfo);
+  scoreData = (scoreInfo);
   console.log("saved score")
 }
 
