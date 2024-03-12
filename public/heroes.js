@@ -114,7 +114,7 @@ function clickAdd() {
 
 function randomHero() {
     let newRandom = Math.round(Math.random()*2) + 1;
-    let newHero = new Hero("name", newRandom, 5);
+    let newHero = new Hero("name", newRandom, 1);
     newHero.setURL(newHero.color)
     currentColor = newHero.color;
     usersHeroes.push(newHero);
