@@ -99,7 +99,7 @@ apiRouter.post('/save_scoreInfo', (req, res) => {
   saveScoreInfo(scoreInfo);
 })
 
-const port = 8080;
+const port = process.argv.length > 2 ? process.argv[2] : 3000;
 app.listen(port, function() {
     console.log(`Listening on port ${port}`)
 });
