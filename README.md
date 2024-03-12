@@ -86,16 +86,16 @@ after you lose a round, it will display an inspirational quote. This simulates t
 + done - 40% JavaScript support for your application's interaction logic.
 
 # Startup Service Deliverable
-done + Prerequisite: Simon Service deployed to your production environment
-done + Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
-done + Prerequisite: Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. 
-done + Prerequisite: At least 10 git commits spread consistently throughout the assignment period.
-done + Backend web service support and interaction
-done + 40% - Create an HTTP service using Node.js and Express
-done + 10% - Frontend served up using Express static middleware
-done + 10% - Your frontend calls third party service endpoints. The play.json calls a third party quote service and displays the quote evertyime a user loses a game.
-done + 20% - Your backend provides service endpoints.
-done + 20% - Your frontend calls your service endpoints. The application makes posts and get requests for things such as User Login data, user heroes data, and score data.
++ done - Prerequisite: Simon Service deployed to your production environment
++ done - Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
++ done - Prerequisite: Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. 
++ done - Prerequisite: At least 10 git commits spread consistently throughout the assignment period.
++ done - Backend web service support and interaction
++ done - 40% - Create an HTTP service using Node.js and Express
++ done - 10% - Frontend served up using Express static middleware
++ done - 10% - Your frontend calls third party service endpoints. The play.json calls a third party quote service and displays the quote evertyime a user loses a game.
++ done - 20% - Your backend provides service endpoints.
++ done - 20% - Your frontend calls your service endpoints. The application makes posts and get requests for things such as User Login data, user heroes data, and score data.
 
 You can look through the js files for each of the pages and search for get or post functions that interact with the backend(index.js). 
 
