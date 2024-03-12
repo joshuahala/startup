@@ -80,8 +80,8 @@ class Lazer {
 window.onload = function () {
 
     getHeroes();
-    let localTopScore = JSON.parse(localStorage.getItem("topScore"));
-    if (localTopScore) topScore = localTopScore;
+    // let localTopScore = JSON.parse(localStorage.getItem("topScore"));
+    // if (localTopScore) topScore = localTopScore;
     getTopScore();
     document.getElementById('top-score').textContent = topScore;
 
@@ -409,8 +409,8 @@ function recordScoreInfo() {
     if (!tableData) tableData=[];
     tableData.push(scoreInfo);
 
-    localStorage.setItem("tableData", JSON.stringify(tableData));
-    localStorage.setItem("topScore", JSON.stringify(topScore));
+    // localStorage.setItem("tableData", JSON.stringify(tableData));
+    // localStorage.setItem("topScore", JSON.stringify(topScore));
     saveScoreInfo(tableData);
 }    
 

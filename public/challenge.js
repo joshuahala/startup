@@ -1,17 +1,17 @@
 let heroesList = [];
-let localHeroes = localStorage.getItem('usersHeroes');
-if (localHeroes) {
-    usersHeroes = JSON.parse(localHeroes);
-    console.log(usersHeroes)
-}
+// let localHeroes = localStorage.getItem('usersHeroes');
+// if (localHeroes) {
+//     usersHeroes = JSON.parse(localHeroes);
+//     console.log(usersHeroes)
+// }
 
 let win = false;
 
 window.onload = function() {
-    var username = localStorage.getItem('username');
-    if (username) {
-        document.getElementById('username').textContent = username;
-    }
+    // var username = localStorage.getItem('username');
+    // if (username) {
+    //     document.getElementById('username').textContent = username;
+    // }
     if (heroesList.length < 1) {
         beginner();
     } else {
@@ -157,6 +157,23 @@ async function postHeroes(heroes) {
     });
 }
 
+async function getLoginInfo() {
+    try {
+        const response = await fetch('/api/get_login_info');
+
+        if(!response.ok) {
+            console.log("error")
+        }
+
+        const data = await response.json();
+        document.getElementById('username').textContent = data.username;
+        
+    } catch(error) {
+        console.log(error);
+    }
+}
+getLoginInfo()
+
 function getHeroes() {
     fetch('/api/get_heroes')
         .then(response => response.json())
@@ -177,4 +194,6 @@ function getHeroes() {
 }
 
 getHeroes();
+
+
 

@@ -20,8 +20,8 @@ function create() {
     } else if (usernameInput == "" | passwordInput == "") {  
         
     } else {
-        localStorage.setItem('username', usernameInput);
-        localStorage.setItem('password', passwordInput);
+        // localStorage.setItem('username', usernameInput);
+        // localStorage.setItem('password', passwordInput);
 
         saveLoginInfo(usernameInput, passwordInput)
 
