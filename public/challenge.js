@@ -1,4 +1,4 @@
-let usersHeroes = [];
+let heroesList = [];
 let localHeroes = localStorage.getItem('usersHeroes');
 if (localHeroes) {
     usersHeroes = JSON.parse(localHeroes);
@@ -12,10 +12,10 @@ window.onload = function() {
     if (username) {
         document.getElementById('username').textContent = username;
     }
-    if (usersHeroes.length < 1) {
+    if (heroesList.length < 1) {
         beginner();
     } else {
-        for (let hero of usersHeroes) {
+        for (let hero of heroesList) {
             addHero(hero);
         }
     }
@@ -45,7 +45,7 @@ class Hero {
     }
 }
 
-let Enemy = new Hero("freeze", 1, 1, 'assets/images/blue-only.png');
+let Enemy = new Hero("freeze", 3, 1, 'assets/images/blue-only.png');
 
 function addHero(heroObj) {
     let heroes = document.getElementById('choose-hero');
@@ -108,8 +108,8 @@ function result() {
 
 function resultBtn() {
     if (win == true){
-        usersHeroes.push(Enemy);
-        localStorage.setItem("usersHeroes", JSON.stringify(usersHeroes));
+        heroesList.push(Enemy);
+        postHeroes(heroesList)
     }
     window.location.href = "heroes.html";
 }
@@ -148,3 +148,33 @@ function gotAway() {
     btn.textContent = "ok"
 
 }
+
+async function postHeroes(heroes) {
+    const response = await fetch('/api/save_heroes', {
+        method: 'Post',
+        body: JSON.stringify(heroes),
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+    });
+}
+
+function getHeroes() {
+    fetch('/api/get_heroes')
+        .then(response => response.json())
+        .then(data => {
+            
+            let selectedHero;
+            if(data=="nope") {
+                heroesList = data;
+            } else {
+                heroesList = data.heroes;
+                selectedHero = data.selectedHero;
+            }
+
+        })
+        .catch(error => {
+            console.log("get heroes error", error);
+        });
+}
+
+getHeroes();
+
