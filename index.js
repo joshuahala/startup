@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const DB = require('./database.js')
 
 
 
@@ -63,6 +64,22 @@ apiRouter.get('/get_topScore', (req, res) => {
 
 apiRouter.get('/get_scoreData', (req, res) => {
   res.send(JSON.stringify(scoreData));
+})
+
+apiRouter.post('/createLogin', async (req, res) => {
+  user = await DB.getUser(req.body.username);
+  if(user) {
+    res.status(401).send({ msg: 'Unauthorized' });
+  } else {
+    DB.createUser(req.body.username, req.body.password);
+  }
+})
+
+apiRouter.post('/authLogin', async (req, res) => {
+  user = await DB.getUser(req.body.username);
+  if(user && req.body.password == user.password) {
+    res.send(req.body.username)
+  }
 })
 
 apiRouter.post('/login_info', (req, res) => {
