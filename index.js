@@ -30,7 +30,11 @@ apiRouter.get('/scores', (_req, res) => {
   });
 
 apiRouter.get('/get_login_info', (req, res) => {
-  res.send(JSON.stringify(loginInfo));
+  if (loginInfo) {
+    res.send(JSON.stringify(loginInfo));
+  } else {
+    res.status(404).send({ msg: 'resource not found' });
+  }
 })
 
 
@@ -128,10 +132,7 @@ app.listen(port, function() {
     console.log(`Listening on port ${port}`)
 });
 
-let loginInfo = {
-  username: "sdf",
-  password: "fds"
-};
+let loginInfo;
 
 function saveLoginInfo(username, password) {
   loginInfo.username = username;

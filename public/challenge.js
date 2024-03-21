@@ -163,10 +163,12 @@ async function getLoginInfo() {
 
         if(!response.ok) {
             console.log("error")
+            let username = localStorage.getItem('username');
+            document.getElementById('username').textContent = username;
+        } else {
+            const data = await response.json();
+            document.getElementById('username').textContent = data.username;
         }
-
-        const data = await response.json();
-        document.getElementById('username').textContent = data.username;
         
     } catch(error) {
         console.log(error);

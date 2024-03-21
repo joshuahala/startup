@@ -105,17 +105,22 @@ function toggleMenu() {
     }
 }
 
-function getLoginInfo() {
-    fetch('/api/get_login_info')
-        .then((response) => response.json())
-        .then((data) => {
-            let loginInfo = data;
-            let username = loginInfo.username;
+async function getLoginInfo() {
+    try {
+        const response = await fetch('/api/get_login_info');
+
+        if(!response.ok) {
+            console.log("error")
+            let username = localStorage.getItem('username');
             document.getElementById('username').textContent = username;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+        } else {
+            const data = await response.json();
+            document.getElementById('username').textContent = data.username;
+        }
+        
+    } catch(error) {
+        console.log(error);
+    }
 }
 
 getLoginInfo();

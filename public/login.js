@@ -27,6 +27,7 @@ async function create() {
           },
     });
     if (response.ok) {
+        localStorage.setItem('username', usernameInput);
         window.location.href = "heroes.html"
     } else {
         document.getElementById('error-message').style.display = 'block';
