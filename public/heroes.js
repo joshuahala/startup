@@ -12,8 +12,8 @@ let GlobalUsername;
 
 
 window.onload = function() {
-    getHeroes();
     getLoginInfo();
+    getHeroes();
 
 
 
@@ -197,6 +197,9 @@ async function getLoginInfo() {
         console.log(error);
     }
 }
+
+getLoginInfo();
+
 function getSelectedHero() {    
     fetch('/api/get_selected_hero')
         .then(response => response.json())
@@ -210,25 +213,33 @@ function getSelectedHero() {
 }
 
 
-function getHeroes() {
-    fetch('/api/get_heroes')
-        .then(response => response.json())
-        .then(data => {
+async function getHeroes() {
+    try {
+        const response = await fetch('/api/get_heroes', {
+            method: 'POST',
+            body: JSON.stringify({ username: GlobalUsername }),
+            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        });
+
+        if (!response.ok) {
+            console.log("Error fetching heroes data");
+        } else {
+            const data = await response.json();
             let Heroes;
             let selectedHero;
-            if(data=="nope") {
+            if (data == "nope") {
                 Heroes = data;
             } else {
-                Heroes = data.heroes;
+                Heroes = data.heroes.heroes;
                 selectedHero = data.selectedHero;
             }
             displayHeroes(Heroes, selectedHero);
-
-        })
-        .catch(error => {
-            console.log("get heroes error", error);
-        });
+        }
+    } catch (error) {
+        console.log("Error fetching heroes data", error);
+    }
 }
+getHeroes();
 
 async function displayHeroes(Heroes, selectedHero) {
 
@@ -257,9 +268,10 @@ async function displayHeroes(Heroes, selectedHero) {
 }
 
 async function postHeroes(heroes) {
+    const localUsername = localStorage.getItem('username');
     const response = await fetch('/api/save_heroes', {
         method: 'Post',
-        body: JSON.stringify({heroes: heroes, username: GlobalUsername}),
+        body: JSON.stringify({heroes: heroes, username: localUsername}),
         headers: {'Content-type': 'application/json; charset=UTF-8'}
     });
 }

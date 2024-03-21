@@ -38,7 +38,9 @@ apiRouter.get('/get_login_info', (req, res) => {
 })
 
 
-apiRouter.get('/get_heroes', (req, res) => {
+apiRouter.post('/get_heroes', async (req, res) => {
+  const username = req.body.username;
+  const heroesList = await DB.getHeroes(username);
   if(heroesList) {
     res.send({
       heroes: heroesList,

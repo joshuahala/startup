@@ -38,10 +38,15 @@ async function storeHeroes(heroes) {
   heroesCollection.insertOne(heroes)
 }
 
+async function getHeroes(username) {
+  return heroesCollection.findOne({username: username})
+}
+
 module.exports = {
   getUser,
   createUser,
-  storeHeroes
+  storeHeroes,
+  getHeroes
 }
 
   
