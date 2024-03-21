@@ -33,9 +33,13 @@ async function createUser(username, password) {
   userCollection.insertOne(data)
 }
 
-async function storeHeroes(heroes) {
-  
-  heroesCollection.insertOne(heroes)
+async function storeHeroes(heroes, username) {
+  heroesList = await heroesCollection.findOne({username: username})
+  if(heroesList) {
+    await heroesCollection.updateOne({ username: username }, { $set: { heroes: heroes.heroes} });
+  } else {
+    heroesCollection.insertOne(heroes)
+  }
 }
 
 async function getHeroes(username) {

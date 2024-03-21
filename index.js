@@ -101,7 +101,8 @@ apiRouter.post('/login_info', (req, res) => {
 
 apiRouter.post('/save_heroes', (req, res) => {
   let heroes = {...req.body};
-  DB.storeHeroes(heroes);
+  let username = req.body.username
+  DB.storeHeroes(heroes, username);
 })
 
 apiRouter.post('/save_current_color', (req, res) => {
