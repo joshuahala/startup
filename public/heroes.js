@@ -4,6 +4,7 @@
 let currentColor;
 let color;
 let usersHeroes = [];
+let GlobalUsername;
 //let localHeroes = localStorage.getItem('usersHeroes');
 // if (localHeroes) {
 //     usersHeroes = JSON.parse(localHeroes);
@@ -184,9 +185,12 @@ async function getLoginInfo() {
             console.log("error")
             let username = localStorage.getItem('username');
             document.getElementById('username').textContent = username;
+            GlobalUsername = username;
+            
         } else {
             const data = await response.json();
             document.getElementById('username').textContent = data.username;
+            GlobalUsername = username;
         }
         
     } catch(error) {
@@ -255,7 +259,7 @@ async function displayHeroes(Heroes, selectedHero) {
 async function postHeroes(heroes) {
     const response = await fetch('/api/save_heroes', {
         method: 'Post',
-        body: JSON.stringify(heroes),
+        body: JSON.stringify({heroes: heroes, username: GlobalUsername}),
         headers: {'Content-type': 'application/json; charset=UTF-8'}
     });
 }
