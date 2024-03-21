@@ -8,7 +8,8 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 
 const db = client.db('startup');
-const collection = db.collection('userInfo');
+const userCollection = db.collection('userInfo');
+const heroesCollection = db.collection('userHeroes');
 
 // test connection
 (async function testConnection() {
@@ -20,20 +21,27 @@ const collection = db.collection('userInfo');
   });
 
 async function getUser(usernameInput) {
-  return collection.findOne({username: usernameInput})
+  return userCollection.findOne({username: usernameInput})
 }  
 
 async function createUser(username, password) {
+  let hashPass = await bcrypt.hash(password, 10);
   let data = {
     username: username,
-    password: password
+    password: hashPass
   }
-  collection.insertOne(data)
+  userCollection.insertOne(data)
+}
+
+async function storeHeroes(heroes) {
+  
+  heroesCollection.insertOne(heroes)
 }
 
 module.exports = {
   getUser,
-  createUser
+  createUser,
+  storeHeroes
 }
 
   

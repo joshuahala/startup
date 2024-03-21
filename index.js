@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const bcrypt = require('bcrypt')
 const DB = require('./database.js')
 
 
@@ -67,18 +68,23 @@ apiRouter.get('/get_scoreData', (req, res) => {
 })
 
 apiRouter.post('/createLogin', async (req, res) => {
-  user = await DB.getUser(req.body.username);
+  const user = await DB.getUser(req.body.username);
   if(user) {
     res.status(401).send({ msg: 'Unauthorized' });
   } else {
     DB.createUser(req.body.username, req.body.password);
+    res.status(200).send({ mesg: 'ok'});
   }
 })
 
 apiRouter.post('/authLogin', async (req, res) => {
-  user = await DB.getUser(req.body.username);
-  if(user && req.body.password == user.password) {
-    res.send(req.body.username)
+  const user = await DB.getUser(req.body.username);
+  if(user) {
+    if(await bcrypt.compare(req.body.password, user.password)) {
+      res.send(req.body.username)
+    }
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
   }
 })
 
@@ -88,7 +94,8 @@ apiRouter.post('/login_info', (req, res) => {
 });
 
 apiRouter.post('/save_heroes', (req, res) => {
-  saveHeroes(req.body);
+  let heroes = {...req.body};
+  DB.storeHeroes(heroes);
 })
 
 apiRouter.post('/save_current_color', (req, res) => {

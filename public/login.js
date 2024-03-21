@@ -8,6 +8,10 @@ let getPassword;
 
 window.onload = function() {
     getLoginInfo();
+    document.getElementById('login-username').textContent = "";
+    document.getElementById('login-password').textContent = "";
+
+    
 
 }
 
@@ -24,6 +28,8 @@ async function create() {
     });
     if (response.ok) {
         window.location.href = "heroes.html"
+    } else {
+        document.getElementById('error-message').style.display = 'block';
     }
 
 
@@ -61,6 +67,8 @@ async function login() {
     })
     if (response.ok) {
         window.location.href = "heroes.html";
+    } else {
+        document.getElementById('error-message').style.display = 'block';
     }
 }
     
