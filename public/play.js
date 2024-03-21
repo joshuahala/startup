@@ -78,7 +78,6 @@ class Lazer {
 }
 
 window.onload = function () {
-
     getHeroes();
     // let localTopScore = JSON.parse(localStorage.getItem("topScore"));
     // if (localTopScore) topScore = localTopScore;
@@ -390,13 +389,13 @@ function recordScoreInfo() {
     // var username = localStorage.getItem('username');
     // let heroesListString = localStorage.getItem("usersHeroes");
     // let heroesList = JSON.parse(heroesListString);
-    let numHeroes = heroesList.length; 
-    let topLevel = 1;
-    for (let hero of heroesList) {
-        if (hero.level > topLevel) {
-            topLevel = hero.level;
-        }
-    }
+    // let numHeroes = heroesList.length; 
+    // let topLevel = 1;
+    // for (let hero of heroesList) {
+    //     if (hero.level > topLevel) {
+    //         topLevel = hero.level;
+    //     }
+    // }
 
     let scoreInfo = [
         username,
@@ -408,10 +407,10 @@ function recordScoreInfo() {
     let tableData = JSON.parse(localStorage.getItem("tableData"));
     if (!tableData) tableData=[];
     tableData.push(scoreInfo);
+    saveScoreInfo(tableData);
 
     // localStorage.setItem("tableData", JSON.stringify(tableData));
     // localStorage.setItem("topScore", JSON.stringify(topScore));
-    saveScoreInfo(tableData);
 }    
 
 async function setColor() {

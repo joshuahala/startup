@@ -9,6 +9,7 @@ const client = new MongoClient(url);
 
 const db = client.db('startup');
 const userCollection = db.collection('userInfo');
+const scoreCollection = db.collection('scoreInfo');
 const heroesCollection = db.collection('userHeroes');
 const selectedHeroCollection = db.collection('selectedHeroes');
 
@@ -48,12 +49,16 @@ async function getHeroes(username) {
 }
 
 async function saveSelectedHero(data) {
-  selectedHeroCollection.insertOne(data);
+  await heroesCollection.updateOne({ username: data.username }, { $set: { selectedHero: data.selectedHero} });
 }
 
 async function getSelectedHero(username) {
   console.log(username);
   return selectedHeroCollection.findOne({username: username})
+}
+
+async function saveScoreInfo(scoreInfo) {
+  scoreCollection.insertOne(scoreInfo);
 }
 
 module.exports = {
@@ -62,7 +67,8 @@ module.exports = {
   storeHeroes,
   getHeroes,
   saveSelectedHero,
-  getSelectedHero
+  getSelectedHero,
+  saveScoreInfo
 }
 
   

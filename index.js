@@ -126,7 +126,7 @@ apiRouter.post('/save_scoreInfo', (req, res) => {
   const data = req.body;
   const scoreInfo = data.body;
   res.send("got it");
-  saveScoreInfo(scoreInfo);
+  DB.saveScoreInfo(scoreInfo);
 })
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
