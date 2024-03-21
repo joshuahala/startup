@@ -504,11 +504,19 @@ async function getLoginInfo() {
 
 getLoginInfo()
 
-function getHeroes() {
-    fetch('/api/get_heroes')
-        .then(response => response.json())
-        .then(data => {
-            
+async function getHeroes() {
+    let GlobalUsername = localStorage.getItem('username');
+    try {
+        const response = await fetch('/api/get_heroes', {
+            method: 'POST',
+            body: JSON.stringify({ username: GlobalUsername }),
+            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        });
+
+        if (!response.ok) {
+            console.log("Error fetching heroes data");
+        } else {
+            const data = await response.json();
             let selectedHero;
             if(data=="nope") {
                 heroesList = data;
@@ -516,11 +524,10 @@ function getHeroes() {
                 heroesList = data.heroes;
                 selectedHero = data.selectedHero;
             }
-
-        })
-        .catch(error => {
-            console.log("get heroes error", error);
-        });
+            
+        }
+    } catch (error) {
+        console.log("Error fetching heroes data", error);
+    }
 }
-
 getHeroes();

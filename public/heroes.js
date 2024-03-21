@@ -198,22 +198,45 @@ async function getLoginInfo() {
     }
 }
 
+async function getSelectedHero() {
+    const localUsername = localStorage.getItem('username')
+    try {
+        const response = await fetch('/api/get_selected_hero', {
+            method: 'POST',
+            body: JSON.stringify({ username: localUsername }),
+            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        });
+
+        if (!response.ok) {
+            console.log("Error fetching heroes data");
+        } else {
+            let data = await response.json()
+            let selectedHero = data.selectedHero;
+            console.log("selected", selectedHero)
+            return selectedHero;
+        }
+    } catch (error) {
+        console.log("Error fetching heroes data", error);
+    }
+}
+
 getLoginInfo();
 
-function getSelectedHero() {    
-    fetch('/api/get_selected_hero')
-        .then(response => response.json())
-        .then(data => {
-            let selectedHero = data.selectedHero;
-            return selectedHero;
-        })
-        .catch(error => {
-            console.log("error getting selected hero", error)
-        })
-}
+// function getSelectedHero() {    
+//     fetch('/api/get_selected_hero')
+//         .then(response => response.json())
+//         .then(data => {
+//             let selectedHero = data.selectedHero;
+//             return selectedHero;
+//         })
+//         .catch(error => {
+//             console.log("error getting selected hero", error)
+//         })
+// }
 
 
 async function getHeroes() {
+    const selectedHero = getSelectedHero();
     try {
         const response = await fetch('/api/get_heroes', {
             method: 'POST',
@@ -226,12 +249,10 @@ async function getHeroes() {
         } else {
             const data = await response.json();
             let Heroes;
-            let selectedHero;
             if (data == "nope") {
                 Heroes = data;
             } else {
                 Heroes = data.heroes.heroes;
-                selectedHero = data.selectedHero;
             }
             displayHeroes(Heroes, selectedHero);
         }
@@ -288,12 +309,14 @@ async function postCurrentColor(color) {
 }
 
 async function postSelectedHero(hero) {
+    const username = localStorage.getItem('username');
     let data = {
+        username: username,
         selectedHero: hero
     }
     const response = await fetch('/api/save_selected_hero', {
         method: 'Post',
-        body: JSON.stringify(hero),
+        body: JSON.stringify(data),
         headers: {'Content-type': 'application/json; charset=UTF-8'}
     });
 

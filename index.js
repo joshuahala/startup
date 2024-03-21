@@ -57,10 +57,9 @@ apiRouter.get('/get_current_color', (req, res) => {
   
 })
 
-apiRouter.get('/get_selected_hero', (req, res) => {
-  
-  res.send(JSON.stringify(selectedHero));
-  
+apiRouter.post('/get_selected_hero', async (req, res) => {
+  let selected = await DB.getSelectedHero(req.body.username);
+  res.send(JSON.stringify(selected))
 })
 
 apiRouter.get('/get_topScore', (req, res) => {
@@ -113,7 +112,7 @@ apiRouter.post('/save_current_color', (req, res) => {
 apiRouter.post('/save_selected_hero', (req, res) => {
   const data = req.body;
   res.send("got it");
-  saveSelectedHero(data);
+  DB.saveSelectedHero(data);
 })
 
 apiRouter.post('/save_topScore', (req, res) => {
