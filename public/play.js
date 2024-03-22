@@ -45,6 +45,8 @@ var goalY = 0 * blockSize;
 
 let hazards = [];
 let lazerOn = false;
+let speed = blockSize/2;
+let difficulty = 1;
 
 const startText = document.getElementById('start-text');
 
@@ -59,16 +61,16 @@ class Hazard {
     
     move() {
         if(this.dir == "up") {
-            this.hy -=1 * (blockSize/2);
+            this.hy -=1 * (speed);
         }
         if(this.dir == "down") {
-            this.hy +=1 * (blockSize/2);
+            this.hy +=1 * (speed);
         }
         if(this.dir == "left") {
-            this.hx -=1 * (blockSize/2);
+            this.hx -=1 * (speed);
         }
         if(this.dir == "right") {
-            this.hx +=1 * (blockSize/2);
+            this.hx +=1 * (speed);
         }
     }
 }
@@ -140,6 +142,7 @@ window.onload = async function () {
 }
 
 function update() {
+    
     if (screenHeight > screenWidth) {
         blockSize = Math.round((screenWidth*.75) / 20);
     }
@@ -167,6 +170,9 @@ function update() {
         //check for collision
         if(heroX == hazard.hx && heroY == hazard.hy) {
             spawnHazards = false;
+            difficulty = 1;
+            document.getElementById('canvas').classList.remove('canvas-rotate')
+            speed = blockSize/2;
             document.getElementById('start-text').style.display = "block";
             showQuote();
             getQuote();
@@ -187,6 +193,11 @@ function update() {
     if (goalX == heroX && goalY == heroY && spawnHazards == true) {
         score ++;
         setGoal();
+        if(score % 5 == 0) {
+            increaseDifficulty();
+            levelUp();
+        }
+        
     }
     
     
@@ -296,6 +307,17 @@ function toggleMenu() {
         document.querySelector('.dropdown-content').style.display = "none";
         console.log("closed");
         
+    }
+}
+
+function increaseDifficulty() {
+    if (difficulty == 1) {
+        speed = blockSize;
+        difficulty = 2;
+    } else if (difficulty == 2) {
+        speed = blockSize/2;
+        document.getElementById('canvas').classList.add('canvas-rotate');
+        difficulty = 3;
     }
 }
 

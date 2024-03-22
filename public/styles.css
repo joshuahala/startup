@@ -200,12 +200,19 @@ input[type="text"] {
     text-align: center;
 
 }
-
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 #canvas {
+}
+.canvas-rotate{
     
-    
-    
-    
+    animation: rotate 5s linear infinite; /* Rotate the canvas element continuously over 5 seconds */
 }
 
 #table {
