@@ -5,33 +5,7 @@ let currentColor;
 let color;
 let usersHeroes = [];
 let GlobalUsername;
-//let localHeroes = localStorage.getItem('usersHeroes');
-// if (localHeroes) {
-//     usersHeroes = JSON.parse(localHeroes);
-// }
 
-
-window.onload = function() {
-    getLoginInfo();
-    getHeroes();
-
-
-
-    
-
-    // var username = localStorage.getItem('username');
-    // if (username) {
-    //     document.getElementById('username').textContent = username;
-    // }
-    // if (usersHeroes.length < 1) {
-    //     beginner();
-    // } else {
-    //     for (let hero of usersHeroes) {
-    //         addHero(hero);
-    //     }
-    // }
-
-}
 class Hero {
     constructor(name, color, level, url = null){
         this.name = name;
@@ -58,6 +32,12 @@ class Hero {
 
 blueHero = new Hero("freeze", 1, 1, 'assets/images/blue-only.png');
 
+window.onload = async function () {
+    await getLoginInfo();
+    let heroes = await getHeroes();
+    await displayHeroes(heroes[0], heroes[1]);
+}
+
 function addHero(heroObj, selectedHero) {
     let heroes = document.getElementById('heroes-container');
 
@@ -70,11 +50,9 @@ function addHero(heroObj, selectedHero) {
         }
         event.target.classList.add("selected");
         setColor(heroObj.color);
-        //localStorage.setItem("currentColor", JSON.stringify(heroObj.color));
-        //localStorage.setItem("selectedHero", JSON.stringify(heroObj));
+        
         postCurrentColor(heroObj.color);
         postSelectedHero(heroObj);
-
     });
     
 
@@ -220,23 +198,8 @@ async function getSelectedHero() {
     }
 }
 
-getLoginInfo();
-
-// function getSelectedHero() {    
-//     fetch('/api/get_selected_hero')
-//         .then(response => response.json())
-//         .then(data => {
-//             let selectedHero = data.selectedHero;
-//             return selectedHero;
-//         })
-//         .catch(error => {
-//             console.log("error getting selected hero", error)
-//         })
-// }
-
 
 async function getHeroes() {
-    const selectedHero = getSelectedHero();
     try {
         const response = await fetch('/api/get_heroes', {
             method: 'POST',
@@ -249,30 +212,21 @@ async function getHeroes() {
         } else {
             const data = await response.json();
             let Heroes;
+            let selectedHero;
             if (data == "nope") {
                 Heroes = data;
             } else {
-                Heroes = data.heroes.heroes;
+                Heroes = data.heroes;
+                selectedHero = data.selectedHero;
             }
-            displayHeroes(Heroes, selectedHero);
+            return [Heroes, selectedHero]
         }
     } catch (error) {
         console.log("Error fetching heroes data", error);
     }
 }
-getHeroes();
 
 async function displayHeroes(Heroes, selectedHero) {
-
-    
-
-    // try {
-        // const response = await fetch('/api/get_heroes');
-        // const data = await response.json();
-        // console.log(data)
-
-        
-        
 
     if (Heroes == "nope") {
         beginner();
@@ -283,9 +237,7 @@ async function displayHeroes(Heroes, selectedHero) {
             console.log(heroesList);
         }
     }
-    // } catch(error) {
-    //     console.log("error with heroes", error);
-    // }
+    
 }
 
 async function postHeroes(heroes) {
@@ -321,3 +273,6 @@ async function postSelectedHero(hero) {
     });
 
 }
+
+getLoginInfo();
+getHeroes();

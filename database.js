@@ -58,7 +58,13 @@ async function getSelectedHero(username) {
 }
 
 async function saveScoreInfo(scoreInfo) {
+  console.log(scoreInfo)
   scoreCollection.insertOne(scoreInfo);
+}
+
+async function getTopScore(username) {
+  return scoreCollection.findOne({ username: username }, { sort: { topScore: -1 } });
+
 }
 
 module.exports = {
@@ -68,7 +74,8 @@ module.exports = {
   getHeroes,
   saveSelectedHero,
   getSelectedHero,
-  saveScoreInfo
+  saveScoreInfo,
+  getTopScore
 }
 
   

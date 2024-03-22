@@ -42,10 +42,7 @@ apiRouter.post('/get_heroes', async (req, res) => {
   const username = req.body.username;
   const heroesList = await DB.getHeroes(username);
   if(heroesList) {
-    res.send({
-      heroes: heroesList,
-      selectedHero: selectedHero  
-    });
+    res.send(JSON.stringify(heroesList))
   } else {
     res.send(JSON.stringify("nope"));
   }
@@ -62,9 +59,10 @@ apiRouter.post('/get_selected_hero', async (req, res) => {
   res.send(JSON.stringify(selected))
 })
 
-apiRouter.get('/get_topScore', (req, res) => {
-  
-  res.send(JSON.stringify(topScore));
+apiRouter.post('/get_topScore', async (req, res) => {
+  const username = await req.body.username;
+  const topScore = await DB.getTopScore(username);
+  res.send(topScore);
   
 })
 
@@ -123,8 +121,8 @@ apiRouter.post('/save_topScore', (req, res) => {
 })
 
 apiRouter.post('/save_scoreInfo', (req, res) => {
-  const data = req.body;
-  const scoreInfo = data.body;
+  
+  const scoreInfo = req.body;
   res.send("got it");
   DB.saveScoreInfo(scoreInfo);
 })

@@ -12,6 +12,7 @@ let messages = [];
 let loseStreak = 0;
 
 let heroesList;
+let selectedHero;
 
 var showMenu = false;
 var screenWidth = window.innerWidth;
@@ -34,6 +35,7 @@ var heroX = 0;
 var heroY = 0;
 
 let color="aquamarine";
+let currentColor;
 let hazardColor = "red";
 
 
@@ -77,17 +79,23 @@ class Lazer {
     }
 }
 
-window.onload = function () {
-    getHeroes();
+window.onload = async function () {
+    username = await getLoginInfo()
+
+    let heroInfo = await getHeroes();
+    heroesList = heroInfo[0];
+    selectedHero = heroInfo[1];
+    currentColor = selectedHero.color;
+
     // let localTopScore = JSON.parse(localStorage.getItem("topScore"));
     // if (localTopScore) topScore = localTopScore;
-    getTopScore();
+    topScore = await getTopScore(username);
     document.getElementById('top-score').textContent = topScore;
 
     document.querySelector('.dropdown-content').style.display = "none";
 
     //let currentColor = JSON.parse(localStorage.getItem("currentColor"));
-    setColor();
+    setColor(currentColor);
 
     //var username = localStorage.getItem('username');
     if (username) {
@@ -386,37 +394,37 @@ function hideQuote() {
 }
 
 function recordScoreInfo() {
-    // var username = localStorage.getItem('username');
+    var username = localStorage.getItem('username');
     // let heroesListString = localStorage.getItem("usersHeroes");
     // let heroesList = JSON.parse(heroesListString);
-    // let numHeroes = heroesList.length; 
-    // let topLevel = 1;
-    // for (let hero of heroesList) {
-    //     if (hero.level > topLevel) {
-    //         topLevel = hero.level;
-    //     }
-    // }
+    let numHeroes = heroesList.length; 
+    let topLevel = 1;
+    for (let hero of heroesList) {
+         if (hero.level > topLevel) {
+             topLevel = hero.level;
+         }
+     }
 
-    let scoreInfo = [
-        username,
-        topScore,
-        numHeroes,
-        topLevel
-    ];
+    let scoreInfo = {
+        username: username,
+        topScore: topScore,
+        numHeroes: numHeroes,
+        topLevel: topLevel
+    };
 
     let tableData = JSON.parse(localStorage.getItem("tableData"));
     if (!tableData) tableData=[];
     tableData.push(scoreInfo);
-    saveScoreInfo(tableData);
+    saveScoreInfo(scoreInfo);
 
     // localStorage.setItem("tableData", JSON.stringify(tableData));
     // localStorage.setItem("topScore", JSON.stringify(topScore));
 }    
 
-async function setColor() {
-    const response = await fetch('/api/get_current_color');
-    const data = await response.json();
-    let currentColor = data.setColor;
+async function setColor(currentColor) {
+    // const response = await fetch('/api/get_current_color');
+    // const data = await response.json();
+    // let currentColor = data.setColor;
 
 
     switch(currentColor) {
@@ -452,12 +460,10 @@ async function saveTopScore(score) {
 }
 async function saveScoreInfo(scoreInfo) {
     console.log("loggins")
-    let data = {
-        body: scoreInfo
-    }
+    
     fetch('/api/save_scoreInfo', {
         method: 'Post',
-        body: JSON.stringify(data),
+        body: JSON.stringify(scoreInfo),
         headers: {'Content-type': 'application/json; charset=UTF-8'}
     })
 }
@@ -472,15 +478,22 @@ function getQuote() {
         });
 }
 
-function getTopScore() {
-    fetch('api/get_topScore')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            topScore = data;
-            document.getElementById('top-score').textContent = topScore;
+async function getTopScore(username) {
+    try {
+        const response = await fetch('/api/get_topScore', {
+            method: 'POST',
+            body: JSON.stringify({ username: username }),
+            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        });
 
-        })
+        if(response.ok) {
+            const scoreInfo = await response.json();
+            const topScore = scoreInfo.topScore;
+            return topScore;
+        } 
+    } catch (error) {
+        console.log("error getting topscore", error)
+    }    
 }
 
 async function getLoginInfo() {
@@ -491,17 +504,19 @@ async function getLoginInfo() {
             console.log("error")
             let username = localStorage.getItem('username');
             document.getElementById('username').textContent = username;
+            return username
         } else {
             const data = await response.json();
             document.getElementById('username').textContent = data.username;
+            return data.username;
         }
         
     } catch(error) {
         console.log(error);
+    
     }
 }
 
-getLoginInfo()
 
 async function getHeroes() {
     let GlobalUsername = localStorage.getItem('username');
@@ -520,8 +535,8 @@ async function getHeroes() {
             if(data=="nope") {
                 heroesList = data;
             } else {
-                heroesList = data.heroes;
-                selectedHero = data.selectedHero;
+                return [data.heroes, data.selectedHero];
+
             }
             
         }
