@@ -85,7 +85,7 @@ window.onload = async function () {
     let heroInfo = await getHeroes();
     heroesList = heroInfo[0];
     selectedHero = heroInfo[1];
-    currentColor = selectedHero.color;
+    currentColor = selectedHero? selectedHero.color : heroesList[0].color
 
     // let localTopScore = JSON.parse(localStorage.getItem("topScore"));
     // if (localTopScore) topScore = localTopScore;

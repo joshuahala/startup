@@ -190,7 +190,6 @@ async function getSelectedHero() {
         } else {
             let data = await response.json()
             let selectedHero = data.selectedHero;
-            console.log("selected", selectedHero)
             return selectedHero;
         }
     } catch (error) {
@@ -234,7 +233,6 @@ async function displayHeroes(Heroes, selectedHero) {
         let heroesList = Heroes;
         for (let hero of heroesList) {
             addHero(hero, selectedHero);
-            console.log(heroesList);
         }
     }
     

@@ -1,17 +1,18 @@
-let heroesList = [];
 // let localHeroes = localStorage.getItem('usersHeroes');
 // if (localHeroes) {
 //     usersHeroes = JSON.parse(localHeroes);
 //     console.log(usersHeroes)
 // }
-
 let win = false;
+let heroesList = null;
 
-window.onload = function() {
+window.onload = async function() {
     // var username = localStorage.getItem('username');
     // if (username) {
     //     document.getElementById('username').textContent = username;
     // }
+    heroesList = await getHeroes();
+    getLoginInfo()
     if (heroesList.length < 1) {
         beginner();
     } else {
@@ -106,7 +107,7 @@ function result() {
 
 }
 
-function resultBtn() {
+async function resultBtn() {
     if (win == true){
         heroesList.push(Enemy);
         postHeroes(heroesList)
@@ -124,7 +125,7 @@ function challenge() {
     let chance = Math.round(Math.random()*99 + 1 + modifier);
     console.log(chance);
     
-    if (chance > 60) {
+    if (chance > 20) {
         alert("win");
         win = true;
     } else if (chance < 20) {
@@ -150,11 +151,15 @@ function gotAway() {
 }
 
 async function postHeroes(heroes) {
+    const localUsername = localStorage.getItem('username');
     const response = await fetch('/api/save_heroes', {
         method: 'Post',
-        body: JSON.stringify(heroes),
+        body: JSON.stringify({heroes: heroes, username: localUsername}),
         headers: {'Content-type': 'application/json; charset=UTF-8'}
     });
+    if (response.ok) {
+        return 
+    }
 }
 
 async function getLoginInfo() {
@@ -172,28 +177,35 @@ async function getLoginInfo() {
         console.log(error);
     }
 }
-getLoginInfo()
 
-function getHeroes() {
-    fetch('/api/get_heroes')
-        .then(response => response.json())
-        .then(data => {
-            
+async function getHeroes() {
+    let GlobalUsername = localStorage.getItem('username');
+    try {
+        const response = await fetch('/api/get_heroes', {
+            method: 'POST',
+            body: JSON.stringify({ username: GlobalUsername }),
+            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        });
+
+        if (!response.ok) {
+            console.log("Error fetching heroes data");
+        } else {
+            const data = await response.json();
+            let Heroes;
             let selectedHero;
-            if(data=="nope") {
-                heroesList = data;
+            if (data == "nope") {
+                Heroes = data;
             } else {
-                heroesList = data.heroes;
+                Heroes = data.heroes;
                 selectedHero = data.selectedHero;
             }
-
-        })
-        .catch(error => {
-            console.log("get heroes error", error);
-        });
+            return Heroes
+        }
+    } catch (error) {
+        console.log("Error fetching heroes data", error);
+    }
 }
 
-getHeroes();
 
 
 
