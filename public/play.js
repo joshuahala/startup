@@ -20,7 +20,8 @@ var screenHeight = window.innerHeight;
 var width;
 var height = width;
 //var blockSize = Math.round((screenWidth / 3) / 20);
-var blockSize = screenWidth > screenHeight ? Math.floor((screenHeight * 0.6)/20) : Math.floor((screenWidth * 0.8)/20);
+var blockSize = screenWidth > screenHeight ? Math.floor((screenHeight * 0.6)/20) : Math.floor((screenWidth * 0.75)/20);
+console.log(blockSize)
 var rows = 20;
 var cols = 20;
 
