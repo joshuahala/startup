@@ -63,8 +63,24 @@ async function saveScoreInfo(scoreInfo) {
 }
 
 async function getTopScore(username) {
-  return scoreCollection.findOne({ username: username }, { sort: { topScore: -1 } });
+  const topScore = await scoreCollection.findOne({ username: username }, { sort: { topScore: -1 } });
+  if(topScore) {
+    return topScore;
+  } else {
+    return {topScore: 0}
+  }
+}
 
+async function getScoreData() {
+  return scoreCollection.find({}).toArray()
+    .then(documents => {
+      console.log("Array of documents:", documents);
+      return documents;
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      // Handle error
+    });
 }
 
 module.exports = {
@@ -75,7 +91,8 @@ module.exports = {
   saveSelectedHero,
   getSelectedHero,
   saveScoreInfo,
-  getTopScore
+  getTopScore,
+  getScoreData
 }
 
   

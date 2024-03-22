@@ -66,8 +66,9 @@ apiRouter.post('/get_topScore', async (req, res) => {
   
 })
 
-apiRouter.get('/get_scoreData', (req, res) => {
-  res.send(JSON.stringify(scoreData));
+apiRouter.get('/get_scoreData', async (req, res) => {
+  const scoreData = await DB.getScoreData();
+  res.send(scoreData);
 })
 
 apiRouter.post('/createLogin', async (req, res) => {

@@ -17,37 +17,24 @@ class RowData {
 }
 
 
-window.onload = function() {
+window.onload = async function() {
     document.querySelector('.dropdown-content').style.display = "none";
-    //var username = localStorage.getItem('username');
-    // if (username) {
-    //     document.getElementById('username').textContent = username;
-    // }
-    // tableData = JSON.parse(localStorage.getItem("tableData"));
-    // if (!tableData) tableData = [];
-
+    
     getLoginInfo();
+
+    const tableData = await getScoreData();
     
-    
-        
-
-
-
-
     displayTable(tableData);
 
     setInterval(randomMessage, 3000);
 }
 
 
-
-
-
 function displayTable(tableData) {
 
     // format table data
     for (let scoreInfo of tableData) {
-        let newRowData = new RowData(scoreInfo[0], scoreInfo[1], scoreInfo[2], scoreInfo[3]);
+        let newRowData = new RowData(scoreInfo.username, scoreInfo.topScore, scoreInfo.numHeroes, scoreInfo.topLevel);
 
         tableRows.push(newRowData);
     }
@@ -125,12 +112,9 @@ async function getLoginInfo() {
 
 getLoginInfo();
 
-function getScoreData() {
-    fetch('/api/get_scoreData')
-        .then(response => response.json())
-        .then(data => {
-            tableData = data;
-        })
+async function getScoreData() {
+    response = await fetch('/api/get_scoreData')
+    const data = response.json();
+    return data;
 }
-getScoreData();
 
