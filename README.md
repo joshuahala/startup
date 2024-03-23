@@ -102,4 +102,19 @@ You can look through the js files for each of the pages and search for get or po
 + done - 20% - Your backend provides service endpoints.
 + done - 20% - Your frontend calls your service endpoints.
 
+# Startup Login Deliverable
+### Notes
+In this deliverable I added support for storing and retrieving data using Mongodb. The login page encrypts passwords and stores user credentials in the DataBase. It also checks to see if a username exists for authorization. In the heroes page, we store user info regarding their hero collection. The play page accesses info on the user's hero collection and also stores score info. The scores page retrieves all the scores from players. Each of the pages also checks to see if the user has a username stored in local storage. If there is no username stored, then they are redirected to the login page.
+
++ done Prerequisite: Simon Login deployed to your production environment with your dbConfig.json credentials
++ done Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
++ done Prerequisite: Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the voter app as an example.
++ done Prerequisite: At least 10 git commits spread consistently throughout the assignment period.
++ done Application authentication and authorization
++ done 20% - Supports new user registration
++ done 20% - Supports existing user authentication
++ done 0% - Stores application data in MongoDB
++ done 20% - Stores and retrieves credentials in MongoDB
++ done 20% - Restricts application functionality based upon authentication
+
 
