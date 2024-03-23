@@ -33,6 +33,9 @@ class Hero {
 blueHero = new Hero("freeze", 1, 1, 'assets/images/blue-only.png');
 
 window.onload = async function () {
+    if (!localStorage.getItem('username')) {
+        window.location.href = 'login.html'
+    }
     await getLoginInfo();
     let heroes = await getHeroes();
     await displayHeroes(heroes[0], heroes[1]);
@@ -271,6 +274,8 @@ async function postSelectedHero(hero) {
     });
 
 }
+
+
 
 getLoginInfo();
 getHeroes();

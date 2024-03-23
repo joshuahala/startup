@@ -7,6 +7,9 @@ let win = false;
 let heroesList = null;
 
 window.onload = async function() {
+    if (!localStorage.getItem('username')) {
+        window.location.href = 'login.html'
+    }
     // var username = localStorage.getItem('username');
     // if (username) {
     //     document.getElementById('username').textContent = username;

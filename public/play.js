@@ -83,6 +83,9 @@ class Lazer {
 }
 
 window.onload = async function () {
+    if (!localStorage.getItem('username')) {
+        window.location.href = 'login.html'
+    }
     username = await getLoginInfo()
 
     let heroInfo = await getHeroes();

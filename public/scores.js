@@ -18,6 +18,9 @@ class RowData {
 
 
 window.onload = async function() {
+    if (!localStorage.getItem('username')) {
+        window.location.href = 'login.html'
+    }
     document.querySelector('.dropdown-content').style.display = "none";
     
     getLoginInfo();
