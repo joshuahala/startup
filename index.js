@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const bcrypt = require('bcrypt')
 const DB = require('./database.js')
+const { peerProxy } = require('./peerProxy.js');
+
 
 
 
@@ -128,10 +130,10 @@ apiRouter.post('/save_scoreInfo', (req, res) => {
   DB.saveScoreInfo(scoreInfo);
 })
 
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
-app.listen(port, function() {
-    console.log(`Listening on port ${port}`)
-});
+const port = process.argv.length > 2 ? process.argv[2] : 5050;
+//app.listen(port, function() {
+//    console.log(`Listening on port ${port}`)
+//});
 
 let loginInfo;
 
@@ -167,4 +169,10 @@ function saveScoreInfo(scoreInfo) {
   scoreData = (scoreInfo);
   console.log("saved score")
 }
+
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
+
+peerProxy(httpService);
 

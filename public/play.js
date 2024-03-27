@@ -83,6 +83,8 @@ class Lazer {
 }
 
 window.onload = async function () {
+    await configureWebSocket();
+
     if (!localStorage.getItem('username')) {
         window.location.href = 'login.html'
     }
@@ -122,6 +124,7 @@ window.onload = async function () {
             spawnHazards == true ? document.getElementById('start-text').style.display = "none" : document.getElementById('start-text').style.display = "block";
             lives = 3;
             score = 0;
+            sendMessage();
         }
         console.log(e.key);
     });
@@ -571,3 +574,38 @@ async function getHeroes() {
     }
 }
 getHeroes();
+
+let socket = null;
+
+async function configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    socket.onopen = (event) => {
+        console.log("websocket connected");
+    };
+    socket.onclose = (event) => {
+        console.log("ws disconnected")
+    };
+    socket.onmessage = async (event) => {
+        const msg = JSON.parse(await event.data.text());
+        if (msg.type === "startGame") {
+            window.alert(`${msg.username} started a game`)
+        } else if (msg.type === GameStartEvent) {
+            displayMsg('player', msg.from, `started a new game`);
+        }
+    };
+}
+
+function sendMessage() {
+    const data = {
+        username: "josh",
+        type: "startGame",
+        score: 20
+    }
+    if (socket) {
+        socket.send(JSON.stringify(data));
+    } else {
+        console.log("Socket is not initialized");
+    }
+}
+
