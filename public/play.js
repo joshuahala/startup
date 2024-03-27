@@ -27,6 +27,7 @@ var cols = 20;
 
 var score = 0;
 let topScore = 0;
+let points = 0;
 let lives = 3;
 let spawnHazards = false;
 
@@ -203,9 +204,9 @@ function update() {
         setGoal();
         if(score % 5 == 0) {
             increaseDifficulty();
-            levelUp();
         }
-        
+        addPoint();
+        levelUp();
     }
     
     
@@ -346,6 +347,32 @@ function spawnLazer() {
     context.fillRect(lazer.x*blockSize, lazer.y, blockSize, blockSize);
     context.fillRect(lazer.x*blockSize, lazer.y+(19*blockSize), blockSize, blockSize);
     
+}
+
+function addPoint() {
+    const chance = Math.round(Math.random()*5 + 1)
+    if(chance >=3) {
+        points ++ ;
+    }
+    let sdf = selectedHero;
+    console.log(sdf)
+}
+
+function levelUp() {
+    // check what level he is
+    const level = selectedHero.level;
+    // if level 1, and scores 5, level up
+    if (level == 1 && score % 5 == 0) {
+        selectedHero.level = 2;
+        alert("Level up")
+    } else if (level == 2 && score % 5 == 0) {
+        selectedHero.level = 3;
+        alert("Level up")
+    }
+    // if level 2 and scores 10, level up
+    // if level 3, and scores 15, level up
+    // if level 4 and scores 20, level up
+    // if level >= 4 and points % 5 == 0, level up
 }
 
 
