@@ -365,10 +365,17 @@ function levelUp() {
     if (level == 1 && score % 5 == 0) {
         selectedHero.level = 2;
         alert("Level up")
-    } else if (level == 2 && score % 5 == 0) {
+    } else if (level == 2 && score % 10 == 0) {
         selectedHero.level = 3;
         alert("Level up")
+    } else if (level == 3 && score % 15 == 0) {
+        selectedHero.level = 4;
+        alert("Level up")
+    } else if (level >= 4 && points % 5 == 0) {
+        selectedHero.level ++;
+        alert("Level up")
     }
+
     // if level 2 and scores 10, level up
     // if level 3, and scores 15, level up
     // if level 4 and scores 20, level up
