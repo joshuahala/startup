@@ -353,13 +353,6 @@ function spawnLazer() {
 function newMessage(usertxt, messagetxt) {
     let messageBoard = document.getElementById('player-notifications');
 
-    let userNumber = Math.round(Math.random()*3 + 1);
-    let messageNumber = Math.round(Math.random()*3 + 1);
-    //let usertxt = chooseMessage(userNumber, messageNumber)[0];
-    //let messagetxt = chooseMessage(userNumber, messageNumber)[1];
-
-    
-
     let message = new Message(usertxt, messagetxt);
     messages.push(message);
 
@@ -379,40 +372,7 @@ function newMessage(usertxt, messagetxt) {
     }, 7000)
 }
 
-function chooseMessage(userNum, messageNum) {
-    let usertext;
-    let messagetxt;
-    switch(userNum) {
-        case 1:
-            usertext = "Jared";
-            break;
-        case 2:
-            usertext = "Alexander";
-            break;
-        case 3:
-            usertext = "Clu";
-            break;
-        case 4:
-            usertext = "Hal";
-            break;    
-    }
 
-    switch(messageNum) {
-        case 1:
-            messagetxt = "Started a new game";
-            break;
-        case 2:
-            messagetxt = "got a new highscore";
-            break;
-        case 3:
-            messagetxt = "leveled up";
-            break;
-        case 4:
-            messagetxt = "leveled up";
-            break;
-    }
-    return [usertext, messagetxt]; // Correctly return both values in an array
-}
 
 function showQuote() {
     let quote = document.getElementById('realQuote');
