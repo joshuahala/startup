@@ -124,7 +124,7 @@ window.onload = async function () {
             spawnHazards == true ? document.getElementById('start-text').style.display = "none" : document.getElementById('start-text').style.display = "block";
             lives = 3;
             score = 0;
-            sendMessage();
+            if (spawnHazards == true) sendMessage(username, "startGame");
         }
         console.log(e.key);
     });
@@ -134,15 +134,13 @@ window.onload = async function () {
         document.querySelector('.dropdown-content').classList.toggle('show');
     });
 
-    newMessage();
-    newMessage();
+   
     
     setInterval(update, 1000/10);
     setInterval(spawnHazard, 1000/2);
     //setInterval(toggleLazer, 5000);
 
     let randomInterval = Math.floor(Math.random() * 5 + 4);
-    setInterval(newMessage, randomInterval*1000);
     
     
 }
@@ -192,6 +190,10 @@ function update() {
             }
             loseStreak ++;
             if (loseStreak == 3) weak();
+
+            //send message to other players
+            let txt = `scored ${score}`;
+            sendMessage(username, "endGame", score);
         }
     }
     
@@ -348,13 +350,13 @@ function spawnLazer() {
 
 
 
-function newMessage() {
+function newMessage(usertxt, messagetxt) {
     let messageBoard = document.getElementById('player-notifications');
 
     let userNumber = Math.round(Math.random()*3 + 1);
     let messageNumber = Math.round(Math.random()*3 + 1);
-    let usertxt = chooseMessage(userNumber, messageNumber)[0];
-    let messagetxt = chooseMessage(userNumber, messageNumber)[1];
+    //let usertxt = chooseMessage(userNumber, messageNumber)[0];
+    //let messagetxt = chooseMessage(userNumber, messageNumber)[1];
 
     
 
@@ -589,18 +591,20 @@ async function configureWebSocket() {
     socket.onmessage = async (event) => {
         const msg = JSON.parse(await event.data.text());
         if (msg.type === "startGame") {
-            window.alert(`${msg.username} started a game`)
-        } else if (msg.type === GameStartEvent) {
-            displayMsg('player', msg.from, `started a new game`);
+            let messagetxt = "started a game";
+            newMessage(msg.username, messagetxt);
+        } else if (msg.type === "endGame") {
+            let messagetxt = `scored ${msg.score}`;
+            newMessage(msg.username, messagetxt);
         }
     };
 }
 
-function sendMessage() {
+function sendMessage(username, type, score=null) {
     const data = {
-        username: "josh",
-        type: "startGame",
-        score: 20
+        username: username,
+        type: type,
+        score: score
     }
     if (socket) {
         socket.send(JSON.stringify(data));
