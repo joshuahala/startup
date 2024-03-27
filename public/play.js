@@ -364,17 +364,22 @@ function levelUp() {
     // if level 1, and scores 5, level up
     if (level == 1 && score % 5 == 0) {
         selectedHero.level = 2;
+        updateHeroLevel();
         alert("Level up")
     } else if (level == 2 && score % 10 == 0) {
         selectedHero.level = 3;
+        updateHeroLevel();
         alert("Level up")
     } else if (level == 3 && score % 15 == 0) {
         selectedHero.level = 4;
+        updateHeroLevel();
         alert("Level up")
     } else if (level >= 4 && points % 5 == 0) {
         selectedHero.level ++;
+        updateHeroLevel();
         alert("Level up")
     }
+
 
     // if level 2 and scores 10, level up
     // if level 3, and scores 15, level up
@@ -489,6 +494,18 @@ async function saveScoreInfo(scoreInfo) {
     fetch('/api/save_scoreInfo', {
         method: 'Post',
         body: JSON.stringify(scoreInfo),
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+    })
+}
+
+async function updateHeroLevel() {
+    const data = {
+        hero: selectedHero,
+        username: username
+    }
+    fetch('/api/updateHeroLevel', {
+        method: 'Post',
+        body: JSON.stringify(data),
         headers: {'Content-type': 'application/json; charset=UTF-8'}
     })
 }

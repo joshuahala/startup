@@ -123,6 +123,14 @@ apiRouter.post('/save_topScore', (req, res) => {
   saveTopScore(score);
 })
 
+apiRouter.post('/updateHeroLevel', (req, res) => {
+  const data = req.body;
+  const username = data.username;
+  const heroName = data.hero.name;
+  const level = data.hero.level;
+  DB.updateLevel(username, heroName, level);
+})
+
 apiRouter.post('/save_scoreInfo', (req, res) => {
   
   const scoreInfo = req.body;

@@ -83,6 +83,13 @@ async function getScoreData() {
     });
 }
 
+async function updateLevel(username, heroName, level) {
+  await heroesCollection.updateOne(
+    { username: username, "heroes.name": heroName },
+    { $set: { "heroes.$.level": level } }
+  );
+}
+
 module.exports = {
   getUser,
   createUser,
@@ -92,8 +99,11 @@ module.exports = {
   getSelectedHero,
   saveScoreInfo,
   getTopScore,
-  getScoreData
+  getScoreData,
+  updateLevel
 }
+
+
 
   
 
