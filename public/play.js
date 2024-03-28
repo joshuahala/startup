@@ -354,33 +354,30 @@ function addPoint() {
     if(chance >=3) {
         points ++ ;
     }
-    let sdf = selectedHero;
-    console.log(sdf)
-}
-
-function levelUp() {
     // check what level he is
     const level = selectedHero.level;
     // if level 1, and scores 5, level up
     if (level == 1 && score % 5 == 0) {
         selectedHero.level = 2;
         updateHeroLevel();
+        alert("level up")
     } else if (level == 2 && score % 10 == 0) {
         selectedHero.level = 3;
         updateHeroLevel();
+        alert("level up")
     } else if (level == 3 && score % 15 == 0) {
         selectedHero.level = 4;
         updateHeroLevel();
+        alert("level up")
     } else if (level >= 4 && points % 5 == 0) {
         selectedHero.level ++;
         updateHeroLevel();
+        alert("level up")
     }
+}
 
-
-    // if level 2 and scores 10, level up
-    // if level 3, and scores 15, level up
-    // if level 4 and scores 20, level up
-    // if level >= 4 and points % 5 == 0, level up
+function levelUp() {
+   
 }
 
 
@@ -570,10 +567,11 @@ async function getHeroes() {
         } else {
             const data = await response.json();
             let selectedHero;
+            selectedHero = data.selectedHero? data.selectedHero : data.heroes[0]
             if(data=="nope") {
                 heroesList = data;
             } else {
-                return [data.heroes, data.selectedHero];
+                return [data.heroes, selectedHero];
 
             }
             
