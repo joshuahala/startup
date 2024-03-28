@@ -88,6 +88,10 @@ async function updateLevel(username, heroName, level) {
     { username: username, "heroes.name": heroName },
     { $set: { "heroes.$.level": level } }
   );
+  await heroesCollection.updateOne(
+    { username: username},
+    { $set: { "selectedHero.level": level} }
+  );
 }
 
 module.exports = {
