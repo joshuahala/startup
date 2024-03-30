@@ -97,6 +97,13 @@ window.onload = async function () {
     let heroInfo = await getHeroes();
     heroesList = heroInfo[0];
     selectedHero = heroInfo[1];
+    if (heroesList.includes(selectedHero)) {
+        // selectedHero is in heroesList
+        console.log("selectedHero is in heroesList");
+    } else {
+        // selectedHero is not in heroesList
+        selectedHero = heroesList[0];
+    }
     currentColor = selectedHero? selectedHero.color : heroesList[0].color
 
     // let localTopScore = JSON.parse(localStorage.getItem("topScore"));
