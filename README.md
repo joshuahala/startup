@@ -117,4 +117,19 @@ In this deliverable I added support for storing and retrieving data using Mongod
 + done 20% - Stores and retrieves credentials in MongoDB
 + done 20% - Restricts application functionality based upon authentication
 
+# Websocket Deliverable
+### Notes
+My application now uses websocket to handle communication between players. The Play.html page shows notifications of when other players are starting a game and what they score when they end a game. It also notifies you when another player has lost three times in a row and their character is vulnerable to attack. It shows a pop-up message that gives you the option to try to steal their character. 
+
++ done Prerequisite: Simon WebSocket deployed to your production environment
++ done Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
++ done Prerequisite: Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the voter app as an example.
++ done Prerequisite: At least 10 git commits spread consistently throughout the assignment period.
++ done WebSocket support for data pushed from the backend
++ done 20% - Backend listens for WebSocket connection
++ done 20% - Frontend makes WebSocket connection
++ done 30% - Data sent over WebSocket connection
++ done 30% - WebSocket data displayed in the application interface
+
+
 
