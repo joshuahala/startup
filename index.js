@@ -80,6 +80,13 @@ apiRouter.post('/get_challenger', async (req, res) => {
   res.send(JSON.stringify(challengeInfo));
 })
 
+apiRouter.post('/steal_hero', async (req, res) => {
+  const user = req.body.user;
+  const hero = req.body.hero;
+  DB.stealHero(user, hero);
+  res.sendStatus(200);
+})
+
 apiRouter.post('/createLogin', async (req, res) => {
   const user = await DB.getUser(req.body.username);
   if(user) {

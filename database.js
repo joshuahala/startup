@@ -50,7 +50,20 @@ async function getHeroes(username) {
 }
 
 async function getChallenger(username) {
-  return challengeCollection.findOne({user: username})
+  const challenge = await challengeCollection.findOne({user: username})
+  await challengeCollection.deleteOne({ user: username });
+  return challenge;
+
+}
+
+async function stealHero(username, hero) {
+  console.log(username);
+  console.log(hero.name)
+  await heroesCollection.updateOne(
+    { username: username },
+    { $pull: { heroes: { name: hero.name } } }
+  );
+  console.log("stolen")
 }
 
 async function saveSelectedHero(data) {
@@ -115,7 +128,8 @@ module.exports = {
   getScoreData,
   updateLevel,
   challengeAccepted,
-  getChallenger
+  getChallenger,
+  stealHero
 }
 
 

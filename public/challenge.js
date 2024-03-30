@@ -6,6 +6,7 @@
 let win = false;
 let heroesList = null;
 let challengeData;
+let challengeUser;
 let Enemy;
 
 window.onload = async function() {
@@ -117,6 +118,7 @@ async function resultBtn() {
     if (win == true){
         heroesList.push(Enemy);
         postHeroes(heroesList)
+        const response = await stealHero();
     }
     window.location.href = "heroes.html";
 }
@@ -165,6 +167,21 @@ async function postHeroes(heroes) {
     });
     if (response.ok) {
         return 
+    }
+}
+
+async function stealHero(){
+    data = {
+        user: challengeUser,
+        hero: Enemy
+    }
+    const response = await fetch('/api/steal_hero', {
+        method: 'Post',
+        body: JSON.stringify(data),
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+    })
+    if (response.ok) {
+        return "done";
     }
 }
 
@@ -221,8 +238,9 @@ async function getChallenger() {
             headers: { 'Content-type': 'application/json; charset=UTF-8' }
         });
 
-        const challengInfo = await response.json();
-        return challengInfo.weakHero;
+        const challengeInfo = await response.json();
+        challengeUser = challengeInfo.challengeUser;
+        return challengeInfo.weakHero;
 
     } catch (error) {
         console.log(error, "sldfkjsldf")
