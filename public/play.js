@@ -49,6 +49,9 @@ let lazerOn = false;
 let speed = blockSize/2;
 let difficulty = 1;
 
+let weakHero;
+let challengeUser;
+
 const startText = document.getElementById('start-text');
 
 class Hazard {
@@ -124,7 +127,7 @@ window.onload = async function () {
             spawnHazards = !spawnHazards;
             spawnHazards == true ? document.getElementById('start-text').style.display = "none" : document.getElementById('start-text').style.display = "block";
             lives = 3;
-            score = 0;
+            //score = 0;
             if (spawnHazards == true) sendMessage(username, "startGame");
         }
         console.log(e.key);
@@ -416,13 +419,15 @@ function hideQuote() {
     quote.style.display = "none";
 }
 
-function recordScoreInfo() {
+async function recordScoreInfo() {
     var username = localStorage.getItem('username');
     // let heroesListString = localStorage.getItem("usersHeroes");
     // let heroesList = JSON.parse(heroesListString);
-    let numHeroes = heroesList.length; 
+    let heroess, sselectedHero = await getHeroes();
+    let numHeroes = heroess.length; 
     let topLevel = 1;
-    for (let hero of heroesList) {
+    heroess.push(selectedHero);
+    for (let hero of heroess) {
          if (hero.level > topLevel) {
              topLevel = hero.level;
          }
@@ -466,9 +471,18 @@ async function setColor(currentColor) {
 
 function weak() {
     console.log("hit")
-    selectedHero = JSON.parse(localStorage.getItem("selectedHero"));
-    let isWeak = [true, selectedHero];
-    localStorage.setItem("weak", JSON.stringify(isWeak));
+    const data = {
+        username: username,
+        type: "weak",
+        hero: selectedHero
+    }
+    if (socket) {
+        socket.send(JSON.stringify(data));
+    } else {
+        console.log("Socket is not initialized");
+    }
+
+
 }
 
 async function saveTopScore(score) {
@@ -487,6 +501,19 @@ async function saveScoreInfo(scoreInfo) {
     fetch('/api/save_scoreInfo', {
         method: 'Post',
         body: JSON.stringify(scoreInfo),
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+    })
+}
+
+async function challengeAccepted() {
+    const data = {
+        user: username,
+        challengeUser: challengeUser,
+        weakHero: weakHero
+    }
+    fetch('/api/challengeAccepted', {
+        method: 'Post',
+        body: JSON.stringify(data),
         headers: {'Content-type': 'application/json; charset=UTF-8'}
     })
 }
@@ -523,7 +550,8 @@ async function getTopScore(username) {
 
         if(response.ok) {
             const scoreInfo = await response.json();
-            const topScore = scoreInfo.topScore;
+            //const topScore = scoreInfo.topScore;
+            const topScore = 2;
             return topScore;
         } 
     } catch (error) {
@@ -550,6 +578,20 @@ async function getLoginInfo() {
         console.log(error);
     
     }
+}
+
+
+
+function closeMessage() {
+    let message = document.getElementById('challenge-notification');
+    message.style.display = "none";
+
+}
+
+async function accept() {
+    await challengeAccepted()
+    window.location.href = "challenge.html";
+
 }
 
 
@@ -601,6 +643,10 @@ async function configureWebSocket() {
         } else if (msg.type === "endGame") {
             let messagetxt = `scored ${msg.score}`;
             newMessage(msg.username, messagetxt);
+        } else if (msg.type == "weak") {
+            challengeUser = msg.username;
+            weakHero = msg.hero;
+            document.getElementById('challenge-notification').style.display = "block";
         }
     };
 }

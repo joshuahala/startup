@@ -132,10 +132,15 @@ apiRouter.post('/updateHeroLevel', (req, res) => {
 })
 
 apiRouter.post('/save_scoreInfo', (req, res) => {
-  
   const scoreInfo = req.body;
   res.send("got it");
   DB.saveScoreInfo(scoreInfo);
+})
+
+apiRouter.post('/challengeAccepted', (req, res) => {
+  const data = req.body;
+  res.send("got it");
+  DB.challengeAccepted(data);
 })
 
 const port = process.argv.length > 2 ? process.argv[2] : 5050;

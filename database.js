@@ -12,6 +12,7 @@ const userCollection = db.collection('userInfo');
 const scoreCollection = db.collection('scoreInfo');
 const heroesCollection = db.collection('userHeroes');
 const selectedHeroCollection = db.collection('selectedHeroes');
+const challengeCollection = db.collection('challengeCollection');
 
 // test connection
 (async function testConnection() {
@@ -62,6 +63,10 @@ async function saveScoreInfo(scoreInfo) {
   scoreCollection.insertOne(scoreInfo);
 }
 
+async function challengeAccepted(data) {
+  challengeCollection.insertOne(data);
+}
+
 async function getTopScore(username) {
   const topScore = await scoreCollection.findOne({ username: username }, { sort: { topScore: -1 } });
   if(topScore) {
@@ -104,7 +109,8 @@ module.exports = {
   saveScoreInfo,
   getTopScore,
   getScoreData,
-  updateLevel
+  updateLevel,
+  challengeAccepted
 }
 
 
