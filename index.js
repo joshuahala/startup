@@ -73,6 +73,13 @@ apiRouter.get('/get_scoreData', async (req, res) => {
   res.send(scoreData);
 })
 
+apiRouter.post('/get_challenger', async (req, res) => {
+  const user = req.body.username;
+  const challengeInfo = await DB.getChallenger(user);
+  console.log("sent it")
+  res.send(JSON.stringify(challengeInfo));
+})
+
 apiRouter.post('/createLogin', async (req, res) => {
   const user = await DB.getUser(req.body.username);
   if(user) {

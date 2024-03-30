@@ -49,6 +49,10 @@ async function getHeroes(username) {
   return heroesCollection.findOne({username: username})
 }
 
+async function getChallenger(username) {
+  return challengeCollection.findOne({user: username})
+}
+
 async function saveSelectedHero(data) {
   await heroesCollection.updateOne({ username: data.username }, { $set: { selectedHero: data.selectedHero} });
 }
@@ -110,7 +114,8 @@ module.exports = {
   getTopScore,
   getScoreData,
   updateLevel,
-  challengeAccepted
+  challengeAccepted,
+  getChallenger
 }
 
 

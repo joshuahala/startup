@@ -5,6 +5,8 @@
 // }
 let win = false;
 let heroesList = null;
+let challengeData;
+let Enemy;
 
 window.onload = async function() {
     if (!localStorage.getItem('username')) {
@@ -14,6 +16,8 @@ window.onload = async function() {
     // if (username) {
     //     document.getElementById('username').textContent = username;
     // }
+    Enemy = await getChallenger(); 
+
     heroesList = await getHeroes();
     getLoginInfo()
     if (heroesList.length < 1) {
@@ -49,7 +53,6 @@ class Hero {
     }
 }
 
-let Enemy = new Hero("freeze", 3, 1, 'assets/images/blue-only.png');
 
 function addHero(heroObj) {
     let heroes = document.getElementById('choose-hero');
@@ -206,6 +209,23 @@ async function getHeroes() {
         }
     } catch (error) {
         console.log("Error fetching heroes data", error);
+    }
+}
+
+async function getChallenger() {
+    try {
+        let GlobalUsername = localStorage.getItem('username');
+        const response = await fetch('/api/get_challenger', {
+            method: 'POST',
+            body: JSON.stringify({ username: GlobalUsername }),
+            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        });
+
+        const challengInfo = await response.json();
+        return challengInfo.weakHero;
+
+    } catch (error) {
+        console.log(error, "sldfkjsldf")
     }
 }
 
