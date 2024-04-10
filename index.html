@@ -1,47 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <script src="login.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+
     <title>Bit Hero</title>
-</head>
-<body>
-    <div class="login-card">
-        <h1>Bit Hero</h1>
-        <p>Username</p>
-        <input type="text" id="login-username">
-        <p>Password</p>
-        <input type="text" id="login-password">
-        <p class="error" id="error-message">Please try a different username or password</p>
-        <div id="buttons">
-            <button id="create" onclick="create()">Create</button>
-            <button id="login" onclick="login()">Login</button>
-        </div>
-    </div>
-</body>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.jsx"></script>
+  </body>
 </html>
-
-<style>
-    body {
-        display: flex;
-        align-items: center;
-        font-size: 1.5em;
-    }
-    input[type="text"] {
-        font-size: 1.2em; /* Adjust this value as needed */
-    }
-    button {
-        font-size: 1em;
-    }
-
-    .error {
-        color: rgb(255, 67, 67);
-        display: none;
-    }
-
-
-    
-    
-</style>
