@@ -1,0 +1,19 @@
+{
+  "name": "startup",
+  "version": "1.0.0",
+  "description": "My CS260 Startup Project\r created by Josh Burgoyne",
+  "main": "challenge.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.18.3",
+    "mongodb": "^6.5.0",
+    "uuid": "^9.0.1",
+    "ws": "^8.16.0"
+  }
+}
