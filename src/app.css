@@ -177,7 +177,6 @@ button {
     background-repeat: no-repeat;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 2em;
-    display: none;
 }
 .message {
     position: absolute;
@@ -192,7 +191,6 @@ button {
     background-repeat: no-repeat;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 2em;
-    display: none;
 }
 
 .player-name {
