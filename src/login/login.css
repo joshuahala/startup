@@ -1,0 +1,16 @@
+.body {
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+}
+input[type="text"] {
+    font-size: 1.2em; /* Adjust this value as needed */
+}
+button {
+    font-size: 1em;
+}
+
+.error {
+    color: rgb(255, 67, 67);
+    display: none;
+}
