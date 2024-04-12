@@ -157,7 +157,7 @@ apiRouter.post('/challengeAccepted', (req, res) => {
   DB.challengeAccepted(data);
 })
 
-const port = process.argv.length > 2 ? process.argv[2] : 5050;
+const port = process.argv.length > 2 ? process.argv[2] : 3000;
 //app.listen(port, function() {
 //    console.log(`Listening on port ${port}`)
 //});
