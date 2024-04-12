@@ -20,28 +20,13 @@ export default function App() {
                  <div id="nav-right">
                      <p id="username"></p>
                  </div>
-                 <button onclick="toggleMenu()" class="dropdown-btn">Menu</button>
-                 <div class="dropdown-content">
+                 <button onClick={() => toggleMenu()} className="dropdown-btn">Menu</button>
+                 <div className="dropdown-content">
                      <NavLink to="heroes">My Heroes</NavLink>
                      <NavLink to="play">Play</NavLink>
                      <NavLink to="scores">Scores</NavLink>
                  </div>
              </nav>
-             <div className='login-card'>
-                 <h1>Bit Hero</h1>
-                 <p>Username</p>
-                 <input type="text" id="login-username"></input>
-                 <p>Password</p>
-                 <input type="text" id="login-password"></input>
-                 <div id="buttons">
-                     <button id="create" onclick="create()">Create</button>
-                     <button id="login" onclick="login()">Login</button>
-                 </div>
-             </div>
-             <footer>
-                <a href="https://github.com/joshuahala/startup">My Startup on Github</a>
-            </footer>
-
         <Routes>
         <Route path='/' element={<Login />} exact />
         <Route path='/play' element={<Play />} />
@@ -49,6 +34,11 @@ export default function App() {
         <Route path='/heroes' element={<Heroes />} />
         <Route path='*' element={<Login />} />
         </Routes>
+             
+             <footer>
+                <a href="https://github.com/joshuahala/startup">My Startup on Github</a>
+            </footer>
+
          </div>
         </BrowserRouter>
 
