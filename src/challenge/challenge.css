@@ -1,0 +1,30 @@
+body {
+    margin:0;
+    padding:0;
+}
+
+main {
+    text-align: center;
+}
+
+
+#result {
+display: none;
+}
+#challenging {
+display: none;
+}
+
+
+#heroes-container {
+    display: flex;
+    justify-content: center;
+}
+
+.heroes-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+

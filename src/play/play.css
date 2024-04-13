@@ -1,18 +1,24 @@
-main {
+.mains {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 0px 20px 0px 20px;
     height: 100%;
+    width: 100%;
     color: white;
     text-align: center;
+    width: 100vw;
 }
+
+
 
 #start-text {
     background-color: black;
     position: absolute;
     top: 45%;
 }
+
+
 
 /* canvas {
     border: 3px solid grey;
@@ -45,6 +51,7 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     padding: 10px;
+    width: 100%;
 }
 .player-name {
     color: lime;

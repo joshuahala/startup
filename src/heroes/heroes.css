@@ -8,6 +8,15 @@ main {
     justify-content: space-between;
 }
 
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
 #usernames {
     position:absolute;
     right: 20px;

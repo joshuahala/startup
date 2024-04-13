@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card } from './card';
 
+import './heroes.css'
+
 class Hero {
   constructor(name, color, level, url = null){
       this.name = name;
@@ -32,11 +34,12 @@ export function Heroes() {
 
     const [currentColor, setCurrentColor] = React.useState(null);
     const [usersHeroes, setUsersHeroes] = React.useState([]);
+    const [GlobalUsername, setGlobalUsername] = React.useState(localStorage.getItem('username'));
   
     //let currentColor = null;
     let color;
     //let usersHeroes = [];
-    let GlobalUsername;
+    //let GlobalUsername;
 
 
     function awesomeBtn() {
@@ -50,6 +53,7 @@ export function Heroes() {
   
     window.onload = async function () {
       checkUsername();
+      setGlobalUsername(localStorage.getItem('username'));
 
       //await getLoginInfo();
       let heroes = await getHeroes();
@@ -91,7 +95,7 @@ export function Heroes() {
 
         linkP.appendChild(linkA);
         cardBottom.appendChild(level);
-        cardBottom.appendChild(linkP);
+        //cardBottom.appendChild(linkP);
 
         let nameEl = document.createElement('p');
         nameEl.classList.add('hero-name');
@@ -172,12 +176,12 @@ export function Heroes() {
                 console.log("error")
                 let username = localStorage.getItem('username');
                 document.getElementById('username').textContent = username;
-                GlobalUsername = username;
-
+                setGlobalUsername(username);
+                
             } else {
                 const data = await response.json();
                 document.getElementById('username').textContent = data.username;
-                GlobalUsername = username;
+                setGlobalUsername(username);
             }
 
         } catch(error) {
@@ -295,7 +299,7 @@ export function Heroes() {
     
 
   return (
-    <div>
+    <div className='main'>
       <div id='message'>
       <h3>Welcome to bit hero!</h3>
       <p>Meet your first hero! He's a level 1 right now but you can train him and level him up. As you play, you will earn more heroes with different colors. You can also have the opportunity to steal heroes from other Players! Enjoy!</p>
@@ -310,7 +314,6 @@ export function Heroes() {
 
       <h2>My Bit Heroes</h2>
       <div id='heroes-container'>
-        <Card></Card>
       </div>
     </div>
   );

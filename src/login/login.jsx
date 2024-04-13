@@ -28,7 +28,7 @@ export function Login() {
     });
     if (response.ok) {
         localStorage.setItem('username', usernameInput);
-        window.location.href = "heroes.html"
+        navigate('/heroes')
     } else {
         document.getElementById('error-message').style.display = 'block';
     }
@@ -89,6 +89,8 @@ export function Login() {
     
 
   return (
+      <div className='main'>
+
         <div className='login-card'>
           <h1>Bit Hero</h1>
           <p>Username</p>
@@ -101,5 +103,6 @@ export function Login() {
             <button id="login" onClick={() => login()}>Login</button>
           </div>
         </div>
+      </div>
   );
 }

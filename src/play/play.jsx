@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import './play.css'
+import { useNavigate } from 'react-router-dom';
+
+
+/////////////////////////////////////////////////////////////
 
 export function Play() {
+
+const navigate = useNavigate();
   
-class Message {
-  constructor(user, message) {
-      this.user = user;
-      this.message = message;
-  }
-}
 let username;
 
 let messages = [];
@@ -56,6 +57,13 @@ let weakHero;
 let challengeUser;
 
 const startText = document.getElementById('start-text');
+
+class Message {
+  constructor(user, message) {
+      this.user = user;
+      this.message = message;
+  }
+}
 
 class Hazard {
   constructor(hx, hy, dir) {
@@ -124,7 +132,7 @@ window.onload = async function () {
       document.getElementById('username').textContent = username;
   }
   
-  canvas = document.getElementById('canvas');
+  let canvas = document.getElementById('canvas');
   canvas.width = cols * blockSize;
   canvas.height = rows * blockSize;
   context = canvas.getContext("2d");
@@ -433,7 +441,9 @@ async function recordScoreInfo() {
   var username = localStorage.getItem('username');
   // let heroesListString = localStorage.getItem("usersHeroes");
   // let heroesList = JSON.parse(heroesListString);
-  let heroess, sselectedHero = await getHeroes();
+  let heroesArray = await getHeroes();
+  let heroess = heroesArray[0];
+  let selectedHero = heroesArray[1];
   let numHeroes = heroess.length; 
   let topLevel = 1;
   heroess.push(selectedHero);
@@ -560,8 +570,8 @@ async function getTopScore(username) {
 
       if(response.ok) {
           const scoreInfo = await response.json();
-          //const topScore = scoreInfo.topScore;
-          const topScore = 2;
+          const topScore = scoreInfo.topScore;
+          //const topScore = 2;
           return topScore;
       } 
   } catch (error) {
@@ -600,7 +610,7 @@ function closeMessage() {
 
 async function accept() {
   await challengeAccepted()
-  window.location.href = "challenge.html";
+  navigate('/challenge');
 
 }
 
@@ -678,6 +688,8 @@ function sendMessage(username, type, score=null) {
 
   return (
     <div className="body">
+      <div className='mains'>
+
       <div id="player-notifications"></div>
 
       <div id="game">
@@ -720,6 +732,7 @@ function sendMessage(username, type, score=null) {
         <button onClick={hideQuote}>Awesome</button>
       </div>
       <div className="quote"></div>
+      </div>
     </div>
   );
 }

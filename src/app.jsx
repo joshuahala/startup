@@ -5,8 +5,12 @@ import { Login } from './login/login';
 import { Play } from './play/play';
 import { Scores } from './scores/scores';
 import { Heroes } from './heroes/heroes';
+import { Challenge } from './challenge/challenge';
 
 export default function App() {
+    const [GlobalUsername, setGlobalUsername] = React.useState(localStorage.getItem('username'));
+
+
     return(
         <BrowserRouter>
          <div className='body'>
@@ -18,7 +22,7 @@ export default function App() {
                      <NavLink to="scores">Scores</NavLink>
                  </div>
                  <div id="nav-right">
-                     <p id="username"></p>
+                     <p id="username"> { GlobalUsername}</p>
                  </div>
                  <button onClick={() => toggleMenu()} className="dropdown-btn">Menu</button>
                  <div className="dropdown-content">
@@ -32,6 +36,7 @@ export default function App() {
         <Route path='/play' element={<Play />} />
         <Route path='/scores' element={<Scores />} />
         <Route path='/heroes' element={<Heroes />} />
+        <Route path='/challenge' element={<Challenge />} />
         <Route path='*' element={<Login />} />
         </Routes>
              
