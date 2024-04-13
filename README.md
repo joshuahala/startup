@@ -135,7 +135,7 @@ My application now uses websocket to handle communication between players. The P
 
 I will start off by saying I didn't get as much done as I wanted. There were some things about react that I couldn't figure out. For example, each page that you go to using the react browser router needs to be refreshed once you get there. If a page looks bare or empty just hit refresh to get it to work.
 
-I restructured the project to use React. I made components for each page. I have a lot of javascript and DOM manipulation so I didn't convert all of that over to react. However, the application mostly works except for a few things. You can still create users, login, and play the game. 
+I restructured the project to use React. I made components for each page. I have a lot of javascript and DOM manipulation so I didn't convert all of that over to react. However, the application mostly works except for a few things. You can still create users, login, and play the game. Just hit REFRESH when you go to a new page to load the content.
 
 + done Prerequisite: Simon React deployed to your production environment
 + done Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
