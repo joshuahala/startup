@@ -135,6 +135,7 @@ apiRouter.post('/save_topScore', (req, res) => {
   const score = data.newTopScore;
   res.send("got it");
   saveTopScore(score);
+  
 })
 
 apiRouter.post('/updateHeroLevel', (req, res) => {
