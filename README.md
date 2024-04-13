@@ -131,5 +131,21 @@ My application now uses websocket to handle communication between players. The P
 + done 30% - Data sent over WebSocket connection
 + done 30% - WebSocket data displayed in the application interface
 
+# React Deliverable
+
+I will start off by saying I didn't get as much done as I wanted. There were some things about react that I couldn't figure out. For example, each page that you go to using the react browser router needs to be refreshed once you get there. If a page looks bare or empty just hit refresh to get it to work.
+
+I restructured the project to use React. I made components for each page. I have a lot of javascript and DOM manipulation so I didn't convert all of that over to react. However, the application mostly works except for a few things. You can still create users, login, and play the game. 
+
++ done Prerequisite: Simon React deployed to your production environment
++ done Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
++ done Prerequisite: Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed.
++ maybe Prerequisite: At least 10 git commits spread consistently throughout the assignment period.
++ mostly Application converted to use React
++ done 10% Bundled using Vite
++ done 30% Multiple functional react components
++ done 30% React router
++ no 30% React hooks
+
 
 
